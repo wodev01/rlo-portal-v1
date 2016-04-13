@@ -1,0 +1,35 @@
+<md-sidenav class="md-sidenav-right md-whiteframe-z2 right-side-nav manageWorksheetView" md-component-id="manageWorksheetView">
+    <!-- swapping view header -->
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">{{worksheetDefinitionName}}
+            <span flex></span>
+            <md-button ng-click="closeSwapForManageWorksheet()" class="md-raised btn btnGreen">
+                Back
+            </md-button>
+        </h1>
+    </md-toolbar>
+    <div layout="column" class="worksheetTabs" ng-if="!isWorksheetDefinition" layout-align="center center" layout-fill
+         flex>
+        <md-progress-circular class="md-accent" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div layout="column" class="worksheetTabs" ng-if="isWorksheetDefinition" ng-controller="manageWorksheetCtrl" ng-init="fnInitWorksheetDefinitions()" style="height: calc(100% - 20px);">
+        <md-tabs flex width="calc(100% - 30px)">
+            <md-tab ng-repeat="worksheetDefinition in worksheetDefinitions.categories" label="{{worksheetDefinition.label}}">
+                <div class="worksheetTab" layout="row" layout-sm="column">
+                    <form style="width:70%;" novalidate>
+                        <worksheet-field data-obj='field' ng-repeat='field in worksheetDefinition.fields'></worksheet-field>
+                        <div layout style="margin-top: 10px">
+                            <div flex></div>
+                            <div>
+                                <md-button class="md-warn md-raised btnBlue" ng-click="fnUpdateWorksheet(worksheetDefinitions)" ng-disabled="isUpdateWorksheetInProgress">Save</md-button>&nbsp;
+                            </div>
+                            <div flex>
+                                <md-button class="md-warn md-raised md-hue-2" ng-click="closeSwapForManageWorksheet()">Cancel</md-button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </md-tab>
+        </md-tabs>
+    </div>
+</md-sidenav>

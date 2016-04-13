@@ -1,0 +1,40 @@
+<md-sidenav class="md-sidenav-right md-whiteframe-z2 right-side-nav" md-component-id="right">
+    <!-- swapping view header -->
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">New Worksheet
+            <span flex></span>
+            <md-button ng-click="closeSwap()" class="md-raised btn btnGreen">
+                Back
+            </md-button>
+        </h1>
+    </md-toolbar>
+
+    <!-- swapping view content -->
+    <md-content class="md-padding">
+        <form id="newWorksheetForm" name="newWorksheetForm" novalidate>
+
+            <div class="form-group">
+                <label for="worksheet_default_location" class="control-label col-sm-2">Location</label>
+                <div class="col-sm-10">
+                    <select  name="location_id" ng-model="newWorksheet.location_id" class="form-control" id="worksheet_default_location" ng-disabled="locations.length == 1">
+                        <option ng-repeat="location in locations" value="{{location.id}}" >{{location.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <md-input-container flex>
+                <label>Period Start</label>
+                <input name="period_start" ng-model="newWorksheet.period_start" ng-click="openDatePicker($event,newWorksheet,'period_start')" readonly style="cursor: pointer">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Period End</label>
+                <input name="period_end" ng-model="newWorksheet.period_end" ng-click="openDatePicker($event,newWorksheet,'period_end')" readonly style="cursor: pointer">
+            </md-input-container>
+            <div class="md-actions" layout="row">
+                <span flex></span>
+                <md-button class="md-raised btn btnBlue" ng-disabled="newWorksheetForm.$invalid" ng-click="fnCreateWorksheet(newWorksheet)">Create New Worksheet</md-button>&nbsp;
+                <md-button class="md-warn md-raised md-hue-2" ng-click="closeSwap()" style="margin:10px 0px !important;" ng-click="cancel()">Cancel</md-button>
+            </div>
+        </form>
+    </md-content>
+
+</md-sidenav>
