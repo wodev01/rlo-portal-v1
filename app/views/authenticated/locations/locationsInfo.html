@@ -1,6 +1,6 @@
-<md-content class="md-padding" layout="row" layout-sm="column">
+<md-content class="md-padding" layout="row" layout-sm="column" md-theme="rlo">
     <div ng-if="isProcessing" layout="column" layout-align="center center" layout-fill flex>
-        <md-progress-circular class="md-accent" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+        <md-progress-circular class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
     </div>
 
     <div layout-fill flex>
@@ -41,11 +41,11 @@
             </md-input-container>
 
             <div layout="row" layout-align="end center">
-                <md-button class="md-raised md-accent"
+                <md-button class="md-raised md-primary"
                            ng-disabled="locationForm.$invalid" ng-click="saveLocation(location)">Save
                 </md-button>
 
-                <md-button class="md-warn md-raised md-hue-2"
+                <md-button class="md-warn md-raised"
                            ng-click="fnCloseLocationManageSwap();">Cancel
                 </md-button>
             </div>

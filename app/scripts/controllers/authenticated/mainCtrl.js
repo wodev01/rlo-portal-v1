@@ -12,7 +12,7 @@ app.controller('MainCtrl', function ($scope, $mdDialog, $location, $cookies, coo
     };
 
     $scope.fnIsActive = function (viewLocation) {
-        return viewLocation === $location.path() ? 'md-accent' : '';
+        return viewLocation === $location.path() ? 'md-warn' : '';
     };
 
     $scope.fnLogout = function () {
