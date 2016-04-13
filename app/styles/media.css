@@ -1,0 +1,24 @@
+@media (max-width: 959px) {
+
+    md-sidenav.right-side-nav {
+        min-width: 100%;
+    }
+
+    img.rlo-logo{
+      height: 55px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .center-form-container {
+      width: 300px;
+    }
+}
+
+@media (max-width: 683px) {
+    img.rlo-logo{
+      height: 63px;
+    }
+}
+
