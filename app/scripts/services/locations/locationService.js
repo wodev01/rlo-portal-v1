@@ -90,6 +90,23 @@ app.factory('locationService',['$q', 'ErrorMsg',
 			return defer.promise;
 		};
 
+		//Get partner locations data
+		locationService.fetchPartnerLocations = function(partnerId){
+			var defer = $q.defer();
+			CarglyPartner.ajax({
+				url: '/partners/api/'+partnerId+'/locations',
+				type: 'GET',
+				success: function (data) {
+					defer.resolve(data);
+				},
+				error:function(error) {
+					ErrorMsg.CheckStatusCode(error.status);
+					defer.resolve(error);
+				}
+			});
+			return defer.promise;
+		};
+
         /*-------------- Getter and Setter Method ---------*/
         var locationObj = {};
         locationService.setLocationObj = function(newObj){

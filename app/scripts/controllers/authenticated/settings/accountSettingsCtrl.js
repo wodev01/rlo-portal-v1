@@ -1,6 +1,6 @@
 'use strict';
 app.controller('AccountSettingsCtrl',
-	function ($scope, accountServices, $mdDialog, toastr, globalTimeZone, $stateParams) {
+	function ($scope, accountServices, $mdDialog, toastr, globalTimeZone, $stateParams, locationService) {
         $scope.isProcessing = false;
         $scope.isSaveBtnDisabled = false;
         $scope.updateAccountForm = function () {
@@ -35,14 +35,24 @@ app.controller('AccountSettingsCtrl',
         };
 
         $scope.fetchAccount = function () {
-
             $scope.isProcessing = true;
             accountServices.fetchAccount(CarglyPartner.user.id)
                 .then(function (data) {
                     $scope.isProcessing = false;
                     CarglyPartner.accountInfo = data;
                     $scope.updateAccountForm();
+                    $scope.fetchPartnerLocations();
                 });
+        };
+
+        $scope.fetchPartnerLocations = function () {
+            var subscriptionsArr = [];
+            locationService.fetchPartnerLocations(CarglyPartner.user.partnerId).then(function(res){
+                angular.forEach(res,function(key){
+                    subscriptionsArr.push({'locationName':key.name,'subscriptions':key.subscriptions});
+                });
+                $scope.paymentInfo.subscriptionsList = subscriptionsArr;
+            });
         };
 
         //$broadcast event

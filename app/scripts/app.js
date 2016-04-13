@@ -142,7 +142,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             templateUrl: "views/authenticated/dashboard/dashboard.html",
             resolve: {
                 AuthService : function(AuthService){
-                    return AuthService.fnGetUser(['realtime_dashboard']);
+                    return AuthService.fnGetUser(['rlo_daily_email']);
                 }
             }
         })
@@ -162,7 +162,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             templateUrl: "views/authenticated/locationSetup/locationSetup.html",
             resolve: {
                 AuthService : function(AuthService){
-                    return AuthService.fnGetUser(['realtime_dashboard']);
+                    return AuthService.fnGetUser([]);
                 }
             }
         })

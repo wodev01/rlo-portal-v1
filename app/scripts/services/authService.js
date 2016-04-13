@@ -63,7 +63,7 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                             else{*/
                                 var userSubscriptions = JSON.parse(response.subscriptions);
                                 angular.forEach(userSubscriptions, function (obj) {
-                                    if(obj.subscriptions.indexOf('realtime_dashboard') !== -1){
+                                    if(obj.subscriptions.indexOf('rlo_daily_email') !== -1){
                                         $location.url('/dashboard');
                                     }else{
                                         $location.url('/locations');
@@ -98,7 +98,7 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                             else{*/
                                 var userSubscriptions = JSON.parse(response.subscriptions);
                                 angular.forEach(userSubscriptions, function (obj) {
-                                    if(obj.subscriptions.indexOf('realtime_dashboard') !== -1){
+                                    if(obj.subscriptions.indexOf('rlo_daily_email') !== -1){
                                         $location.url('/dashboard');
                                     }else{
                                         $location.url('/locations');

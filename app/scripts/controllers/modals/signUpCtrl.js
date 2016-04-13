@@ -7,6 +7,7 @@ app.controller('SignUpCtrl', function ($scope, $mdDialog,globalTimeZone) {
         businessTimezone: '',
         businessUrl: '',
         contactName: '',
+        phone:'',
         contactEmail: '',
         password: ''
     };
@@ -38,6 +39,7 @@ app.controller('SignUpCtrl', function ($scope, $mdDialog,globalTimeZone) {
                         businessTimezone: '',
                         businessUrl: '',
                         contactName: '',
+                        phone:'',
                         contactEmail: '',
                         password: ''
                     };

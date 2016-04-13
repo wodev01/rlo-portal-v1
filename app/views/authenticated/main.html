@@ -47,7 +47,7 @@
                 md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-sm')">
         <md-button class="md-primary" ng-class="fnIsActive('/dashboard')"
-                   ng-if="fnCheckSubscription(userSubscriptions,['realtime_dashboard'])"
+                   ng-if="fnCheckSubscription(userSubscriptions,['rlo_daily_email'])"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.dashboard">
             <md-icon md-font-set="material-icons">dashboard</md-icon> Dashboard</md-button>
 

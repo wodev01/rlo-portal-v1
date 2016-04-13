@@ -88,7 +88,7 @@
 
             <md-button class="md-warn md-raised md-hue-2" ng-click="cancel();">Cancel</md-button>
 
-            <md-progress-circular class="md-primary" md-theme="rsmt" ng-if="isProcessing"
+            <md-progress-circular class="md-primary" md-theme="rlo" ng-if="isProcessing"
                                   md-mode="indeterminate"></md-progress-circular>
         </div>
     </form>
@@ -96,10 +96,18 @@
 
     <div class="md-title margin-top-10">Payment Information</div>
     <div class="md-padding" layout="column">
-        <md-input-container class="remove-error-space">
-            <label>Subscription Type</label>
-            <input name="subscriptionType" ng-model="paymentInfo.subscriptionType" disabled>
-        </md-input-container>
+        <md-content flex class="md-padding subscriptions">
+            <label><strong><u>Subscriptions</u></strong></label>
+
+            <div layout="row" layout-margin layout-fill>
+                <div flex class="t-head">Location</div>
+                <div flex class="t-head">Subscriptions</div>
+            </div>
+            <div ng-repeat="subscription in paymentInfo.subscriptionsList" layout="row" layout-margin layout-fill>
+                <div flex class="t-body">{{subscription.locationName}}</div>
+                <div flex class="t-body">{{subscription.subscriptions}}</div>
+            </div>
+        </md-content>
 
         <md-input-container class="remove-error-space">
             <label>Card Type</label>
