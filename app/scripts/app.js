@@ -20,7 +20,8 @@ var app = angular
         'ui.grid.autoResize',
         'ui.grid.pagination',
         'ui.grid.exporter',
-        'angular.filter'
+        'angular.filter',
+        'mdDateTime'
     ])
     .constant('cookieName', 'cargly_rloPortal_access_token')
     .constant('toastr', toastr)

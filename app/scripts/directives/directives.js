@@ -186,3 +186,19 @@ app.directive('repairOrderGrid', function($mdDialog,allCustomerService) {
     };
 });
 
+app.directive('worksheetField', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            obj: '='
+        },
+        templateUrl: 'views/authenticated/worksheet/worksheetFieldTmpl.html',
+        link : function($scope, element, attrs){
+            ///$scope.obj.source = 1;
+            /*$scope.$watch('obj.action', function(newValue, oldValue){
+
+             }, true);*/
+        }
+    };
+});
+

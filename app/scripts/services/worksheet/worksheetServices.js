@@ -1,10 +1,8 @@
 'use strict';
-app.factory('worksheetServices',['$q', '$rootScope','localStorage',
-    function($q, $rootScope, localStorage) {
+app.factory('worksheetServices',['$q', '$rootScope',
+    function($q, $rootScope) {
         var worksheetServices = {};
-
-        var userObj = JSON.parse(localStorage.getItem('userObj'));
-        var pId = userObj.partnerId;
+        var pId = CarglyPartner.user.partnerId;
 
         /*------------------------ Worksheet API call ----------------------------*/
 

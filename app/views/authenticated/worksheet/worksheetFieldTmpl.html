@@ -1,5 +1,5 @@
 <div layout id="{{obj.id}}">
-    <md-content layout-padding flex>
+    <md-content flex>
         <label>{{obj.label}}
         </label>
     </md-content>
@@ -13,13 +13,13 @@
             </div>
         </md-tooltip>
     </md-button>
-    <md-content layout-padding flex>
+    <md-content flex>
         <select ng-model="obj.source">
             <option value="AUTOMATIC">Automatic</option>
             <option value="MANUAL">Manual</option>
         </select>
     </md-content>
-    <md-input-container flex>
-        <input ng-model="obj.value" ng-disabled="obj.source == 'AUTOMATIC'">
+    <md-input-container flex style="margin: 0">
+        <input aria-label="value" ng-model="obj.value" ng-disabled="obj.source == 'AUTOMATIC'">
     </md-input-container>
 </div>

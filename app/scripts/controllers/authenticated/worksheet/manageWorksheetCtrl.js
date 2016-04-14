@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('manageWorksheetCtrl',
-    function ($scope, Toast, worksheetServices) {
+    function ($scope, toastr, worksheetServices) {
 
         $scope.worksheetDefinitions = {};
         $scope.updateWorksheet = {};
@@ -35,7 +35,7 @@ app.controller('manageWorksheetCtrl',
             worksheetServices.updateWorksheet($scope.updateWorksheet.id,$scope.updateWorksheet)
                 .then(function(){
                     $scope.isUpdateWorksheetInProgress = false;
-                    Toast.success('Worksheet updated successfully.');
+                    toastr.success('Worksheet updated successfully.');
                 });
 		};
 

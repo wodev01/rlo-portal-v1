@@ -6,9 +6,6 @@ app.controller('worksheetCtrl',
         var currentMonthFirstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
         var currentMonthLastDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
 
-        var userObj = JSON.parse(localStorage.getItem('userObj'));
-        var pId = userObj.partnerId;
-
         /*---------------- create new worksheet new ------------------*/
         function parseDateFormat(date){
             return $filter('date')(date,'yyyy-MM-dd');
@@ -18,7 +15,7 @@ app.controller('worksheetCtrl',
             'definition_id' : 1,
             'definition_name' : 'Composite Worksheet',
             'version' : 2,
-            'partner_id' : pId,
+            'partner_id' : CarglyPartner.user.partnerId,
             'location_id' : '',
             'period_start' : '',
             'period_end' : '',
@@ -28,7 +25,7 @@ app.controller('worksheetCtrl',
         $scope.locations = [{ id: '', name: '-- select location --'}];
         // Locations
         $scope.fetchLocations = function () {
-          var subscriptionsArr = typeof userObj.subscriptions === 'string' ? JSON.parse(userObj.subscriptions) : [];
+          var subscriptionsArr = typeof CarglyPartner.user.subscriptions === 'string' ? JSON.parse(CarglyPartner.user.subscriptions) : [];
           angular.forEach(subscriptionsArr, function(obj) {
               angular.forEach(obj.subscriptions, function(value) {
                   if (value === 'rlo_standard') {
@@ -109,7 +106,7 @@ app.controller('worksheetCtrl',
 
             $mdDialog.show({
                 controller: DatePickerDialogController,
-                templateUrl: 'views/authenticated/datePickerDialog.html',
+                templateUrl: 'views/authenticated/worksheet/datePickerDialog.html',
                 targetEvent: ev
             });
         };
@@ -191,6 +188,8 @@ app.controller('worksheetCtrl',
             data: 'worksheetData',
             totalServerItems:'worksheetTotalServerItems',
             pagingOptions: $scope.worksheetPagingOptions,
+            paginationPageSizes: [5, 10, 25, 50],
+            paginationPageSize: 5,
             filterOptions: $scope.worksheetFilterOptions,
             rowHeight: 50,
             multiSelect: false,
@@ -232,6 +231,7 @@ app.controller('worksheetCtrl',
         };
         //Swapping view open function for manageWorksheet
         $scope.openSwapForManageWorksheet = function(row) {
+            console.log("test");
             $scope.isWorksheetDefinition = false;
             setTimeout(function(){
                 $scope.manageWorksheetView = '';
@@ -240,6 +240,7 @@ app.controller('worksheetCtrl',
                 $scope.$apply();
                 $mdSidenav('manageWorksheetView').open()
                     .then(function(){
+                        console.log("worksheet");
                         //$log.debug('open RIGHT is done');
                         worksheetServices.setWorksheetObj(row.entity);
                         worksheetServices.fetchOneWorksheetDefinitions(row.entity.definition_id).then(function(res){

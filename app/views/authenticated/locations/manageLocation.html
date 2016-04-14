@@ -16,21 +16,8 @@
                 </div>
             </md-tab>
 
-            <md-tab label="Recommended Service">
-                <md-content ng-controller="recommendedServiceCtrl" class="md-padding" ng-if="selectedLocationTab === 1">
-                    <div layout="row" layout-sm="column" layout-align="center center" ng-if="!isDataNotNull && !isMsgShow" md-theme="rlo    ">
-                        <md-progress-circular  class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
-                    </div>
-                    <div ng-if="isMsgShow" layout="row" layout-align="center center"><h1>No recommended service available</h1></div>
-                    <div layout-fill flex ng-if="isDataNotNull"
-                         ui-grid-selection ui-grid-auto-resize
-                         ng-style="$root.fnReturnGridHeight(recommendedServicesData.length)"
-                         ui-grid="recommendedServiceGridOptions"></div>
-                </md-content>
-            </md-tab>
-
             <md-tab label="Repair Orders">
-                <md-content ng-controller="repairOrderCtrl" class="md-padding" ng-if="selectedLocationTab === 2">
+                <md-content ng-controller="repairOrderCtrl" class="md-padding" ng-if="selectedLocationTab === 1">
                     <div layout="row" layout-sm="column" layout-align="center center" ng-if="!isDataNotNull && !isMsgShow" md-theme="rlo">
                         <md-progress-circular  class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
                     </div>

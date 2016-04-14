@@ -2,7 +2,6 @@
 app.controller('DashboardCtrl', function ($scope, $mdDialog, $filter, $timeout, toastr, locationService, dashboardService) {
 
     $scope.partnerId = '';
-    $scope.partnerId = 'ahBzfmNhcmdseXBsYXRmb3JtchULEghQUGFydG5lchiAgICQmP2fCww';
     $scope.locationDDOptions = [];
     $scope.selectedLocationOption = '';
 
@@ -1343,11 +1342,11 @@ app.controller('DashboardCtrl', function ($scope, $mdDialog, $filter, $timeout, 
     /*---------------- End of Marketing Source --------------*/
     /*---------- Init ----------*/
     $scope.fnInitDashboard = function () {
-        setTimeout( function(){
+        //setTimeout( function(){
             $scope.partnerId = CarglyPartner.user.partnerId;
             $scope.fnGetLocationDetails();
             $scope.fnCreatechartGroupsDD();
-         },1000);
+         //},1000);
     };
 
     $scope.fnRefreshDom = function () {
