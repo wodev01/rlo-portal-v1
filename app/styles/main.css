@@ -7,11 +7,6 @@
     max-height: 500px;
 }
 
-.settingTabs .settingTab {
-    height: 100%;
-    min-height: 550px;
-}
-
 /*---------- Location Color Indicator ----------*/
 .checked_item {
     border-radius: 13px;
@@ -118,10 +113,18 @@
     background: url("../images/setup/FinishingSetup.jpeg");
 }
 
-/*---------- Setting Tabs ----------*/
+/*---------- START: Setting Tabs ----------*/
 /*---------- md-tabs tab container size ----------*/
 div.settings-tab-container md-tabs md-tabs-content-wrapper > md-tab-content > div[md-tabs-template] {
     min-height: 550px;
+}
+
+div.settings-tab-container md-tabs.md-rlo-theme.md-primary > md-tabs-wrapper {
+    background-color: #6495ED;
+}
+
+div.settings-tab-container md-tabs.md-rlo-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+    color: #FFFFFF;
 }
 
 /*---------- Account Settings ----------*/
@@ -138,3 +141,4 @@ div.settings-tab-container md-tabs md-tabs-content-wrapper > md-tab-content > di
     padding: 5px;
     word-wrap: break-word;
 }
+/*---------- End: Settings Tab ----------*/
