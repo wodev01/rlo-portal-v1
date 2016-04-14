@@ -26,7 +26,6 @@ var app = angular
     .constant('cookieName', 'cargly_rloPortal_access_token')
     .constant('toastr', toastr)
     .constant('moment', moment)
-    .constant('userObjKey', 'q6h98yhw7b9') //Math.random().toString(36).substring(7);
     .constant('localStorage', localStorage)
     .constant('pagingOptions', ["5", "10", "25", "50", "100"])
     .constant('globalTimeZone', ["US/Hawaii", "US/Alaska", "US/Pacific", "US/Arizona", "US/Mountain", "US/Central", "US/Eastern"]);
@@ -106,9 +105,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             templateUrl: "views/resetPassword.html",
             controller: 'ResetPasswordCtrl',
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnResetPWTokenVerified();
-                }
+                }]
             }
         })
         .state('verify', {
@@ -116,9 +115,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             templateUrl: "views/authenticated/verify/verify.html",
             controller: 'VerifyCtrl',
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnUserVerified();
-                }
+                }]
             }
         })
         .state('payment', {
@@ -126,9 +125,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             templateUrl: "views/authenticated/payment/payment.html",
             controller: 'PaymentCtrl',
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnPaymentVerified();
-                }
+                }]
             }
         })
         .state('main', {
@@ -142,9 +141,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             controller: 'DashboardCtrl',
             templateUrl: "views/authenticated/dashboard/dashboard.html",
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser(['rlo_daily_email']);
-                }
+                }]
             }
         })
         .state('main.locations', {
@@ -152,9 +151,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             controller: 'LocationsCtrl',
             templateUrl: "views/authenticated/locations/locations.html",
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser([]);
-                }
+                }]
             }
         })
         .state('main.worksheet', {
@@ -162,9 +161,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             controller: 'worksheetCtrl',
             templateUrl: 'views/authenticated/worksheet/worksheet.html'/*,
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser(['rlo_standard']);
-                }
+                }]
             }*/
         })
         .state('main.locationSetup', {
@@ -172,9 +171,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             controller: 'LocationSetupCtrl',
             templateUrl: "views/authenticated/locationSetup/locationSetup.html",
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser([]);
-                }
+                }]
             }
         })
         .state('main.settings', {
@@ -182,9 +181,9 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             controller: 'SettingsCtrl',
             templateUrl: 'views/authenticated/settings/settings.html',
             resolve: {
-                AuthService : function(AuthService){
+                AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser([]);
-                }
+                }]
             }
         });
 

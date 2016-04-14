@@ -4,8 +4,13 @@
             <md-icon aria-label="Menu">menu</md-icon>
         </md-button>
 
-        <div layout="row">
-            <img class="img-responsive rlo-logo" alt="RLO Shop Portal" src="images/rlo-full-logo.png"/>
+        <div layout="row" layout-align="space-between center" layout-fill>
+            <img class="img-responsive rlo-logo" alt="Rlo training" src="images/rlo-full-logo.png"/>
+
+            <md-button class="md-icon-button" ng-href="http://rlotraining.com/demo/" target="_blank">
+                <md-icon md-font-set="material-icons">play_circle_filled</md-icon>
+                <md-tooltip ng-if="$root.isMobile === null" md-direction="left">Watch Video</md-tooltip>
+            </md-button>
         </div>
 
         <md-menu md-position-mode="target-right target">

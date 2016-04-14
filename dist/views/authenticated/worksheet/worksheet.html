@@ -1,0 +1,21 @@
+<div class="md-padding overflow-auto tab-pane" id="worksheets-pane" flex>
+        <div layout="row" layout-align="space-between center">
+            <div class="md-display-1">Monthly Worksheet</div>
+            <md-button class="md-raised md-accent" ng-click="fnNewWorksheet()">New Worksheet</md-button>
+        </div>
+
+        <p class="help-block">Monthly Worksheet</p>
+        <!--ngGrid-->
+        <div ng-if="isWorksheetMsgShow" layout="row" layout-align="center center">
+            <div class="md-headline"> No worksheet available</div>
+        </div>
+        <div ng-if="!isWorksheetData && !isWorksheetMsgShow" layout="column" layout-align="center center" layout-fill
+             flex>
+            <md-progress-circular class="md-accent" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <div ng-if="isWorksheetData" ng-style="$root.fnReturnGridHeight(worksheetData.length, 50, true)"
+             ui-grid="worksheetGridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-pagination></div>
+</div>
+<!-- include swapping view-->
+<div ng-include="rightView"></div>
+<div ng-include="manageWorksheetView"></div>

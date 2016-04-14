@@ -1,0 +1,27 @@
+<md-sidenav class="md-sidenav-right md-whiteframe-z2 right-side-nav manageWorksheetView" md-component-id="manageWorksheetView">
+    <!-- swapping view header -->
+    <md-toolbar class="light-black-bg-1">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">{{worksheetDefinitionName}}
+            <md-button ng-click="closeSwapForManageWorksheet()" class="md-raised md-primary">Back</md-button>
+        </div>
+    </md-toolbar>
+    <div layout="column" class="worksheetTabs" ng-if="!isWorksheetDefinition" layout-align="center center"
+         layout-fill flex>
+        <md-progress-circular class="md-accent" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div layout="column" class="worksheetTabs" ng-if="isWorksheetDefinition" ng-controller="manageWorksheetCtrl" ng-init="fnInitWorksheetDefinitions()" style="height: calc(100% - 20px);">
+        <md-tabs class="md-primary" md-dynamic-height flex>
+            <md-tab ng-repeat="worksheetDefinition in worksheetDefinitions.categories" label="{{worksheetDefinition.label}}">
+                <md-content class="md-padding worksheetTab" layout="row" layout-sm="column">
+                    <form style="width:70%;" novalidate>
+                        <worksheet-field data-obj='field' ng-repeat='field in worksheetDefinition.fields'></worksheet-field>
+                        <div layout>
+                            <md-button class="md-primary md-raised" ng-click="fnUpdateWorksheet(worksheetDefinitions)" ng-disabled="isUpdateWorksheetInProgress">Save</md-button>&nbsp;
+                            <md-button class="md-warn md-raised md-hue-2" ng-click="closeSwapForManageWorksheet()">Cancel</md-button>
+                        </div>
+                    </form>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </div>
+</md-sidenav>

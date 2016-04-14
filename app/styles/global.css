@@ -1036,7 +1036,7 @@ md-toolbar.top-header {
 /*---------- SideNav ----------*/
 md-sidenav.left-side-nav {
     width: 0;
-    min-width: 180px;
+    min-width: 205px;
     max-width: 0;
     padding-top: 10px;
     z-index: 61;
