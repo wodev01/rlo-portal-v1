@@ -55,6 +55,10 @@
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.locations">
             <md-icon md-font-set="material-icons">place</md-icon> Locations</md-button>
 
+        <md-button class="md-accent" ng-class="fnIsActive('/worksheet')"
+                   ng-click="$root.fnCloseSideNavs();" ui-sref="main.worksheet">
+            <md-icon md-font-set="material-icons">worksheet</md-icon> Monthly Worksheet</md-button>
+
         <md-button class="md-accent" ng-class="fnIsActive('/location/setup')"
                    ng-if="fnCheckSubscription(userSubscriptions,[])"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.locationSetup">
