@@ -1,6 +1,6 @@
 'use strict';
-app.factory('worksheetServices',['$q', '$rootScope',
-    function($q, $rootScope) {
+app.factory('worksheetServices',['$q', 'ErrorMsg',
+    function($q, ErrorMsg) {
         var worksheetServices = {};
         var pId = CarglyPartner.user.partnerId;
 
@@ -88,7 +88,7 @@ app.factory('worksheetServices',['$q', '$rootScope',
                     defer.resolve(data);
                 },
                 error:function(error) {
-                    $rootScope.fnCheckStatus(error.status);
+                    ErrorMsg.CheckStatusCode(error.status);
                     defer.resolve(error);
                 }
             });

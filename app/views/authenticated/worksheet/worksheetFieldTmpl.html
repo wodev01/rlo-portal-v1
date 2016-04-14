@@ -1,25 +1,16 @@
 <div layout id="{{obj.id}}">
-    <md-content flex>
-        <label>{{obj.label}}
-        </label>
-    </md-content>
-    <md-button  class="md-fab md-accent" aria-label="tooltip" style="box-shadow: none; width: 25px;height: 25px;background: #fff;margin-top: 5px">
-        <md-icon icon="images/help_icon.svg" style="width: 15px;height: 15px"></md-icon>
-        <md-tooltip id="tooltipBtn" md-direction="left">
-            <div>
-                <lable>{{obj.label}}</lable>
-                <div style="clear: both"></div>
-                <a href="javascript:void(0);" style="color: #FFFFFF">Click here for more info</a>
-            </div>
-        </md-tooltip>
+    <div flex>{{obj.label}}</div>
+    <md-button class="md-icon-button md-primary margin-right-10" aria-label="tooltip">
+        <md-icon md-font-set="material-icons">help</md-icon>
+        <md-tooltip md-direction="top">{{obj.label}}</md-tooltip>
     </md-button>
-    <md-content flex>
-        <select ng-model="obj.source">
-            <option value="AUTOMATIC">Automatic</option>
-            <option value="MANUAL">Manual</option>
-        </select>
-    </md-content>
-    <md-input-container flex style="margin: 0">
+    <md-input-container class="margin-bottom-0 margin-top-0 margin-right-10">
+        <md-select ng-model="obj.source"  aria-label="select source">
+            <md-option value="AUTOMATIC">Automatic</md-option>
+            <md-option value="MANUAL">Manual</md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container class="margin-bottom-0 margin-top-0">
         <input aria-label="value" ng-model="obj.value" ng-disabled="obj.source == 'AUTOMATIC'">
     </md-input-container>
 </div>

@@ -159,12 +159,12 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
         .state('main.worksheet', {
             url: 'worksheet',
             controller: 'worksheetCtrl',
-            templateUrl: 'views/authenticated/worksheet/worksheet.html'/*,
+            templateUrl: 'views/authenticated/worksheet/worksheet.html',
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser(['rlo_standard']);
                 }]
-            }*/
+            }
         })
         .state('main.locationSetup', {
             url: 'location/setup',

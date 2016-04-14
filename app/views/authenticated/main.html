@@ -61,6 +61,7 @@
             <md-icon md-font-set="material-icons">place</md-icon> Locations</md-button>
 
         <md-button class="md-accent" ng-class="fnIsActive('/worksheet')"
+                   ng-if="fnCheckSubscription(userSubscriptions,['rlo_standard'])"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.worksheet">
             <md-icon md-font-set="material-icons">worksheet</md-icon> Monthly Worksheet</md-button>
 

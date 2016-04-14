@@ -52,7 +52,6 @@ app.controller('worksheetCtrl',
                 $scope.$apply();
                 $mdSidenav('right').open()
                     .then(function(){
-                        //$log.debug('open RIGHT is done');
                     });
             });
         };
@@ -61,7 +60,6 @@ app.controller('worksheetCtrl',
         $scope.closeSwap = function() {
             $mdSidenav('right').close()
                 .then(function(){
-                    //$log.debug('close RIGHT is done');
                 });
         };
 
@@ -112,7 +110,6 @@ app.controller('worksheetCtrl',
         };
 
         /*---------- End of new worksheet -----------*/
-
 
         /* ----- worksheet grid start --------*/
         $scope.worksheetFilterOptions = {
@@ -188,8 +185,8 @@ app.controller('worksheetCtrl',
             data: 'worksheetData',
             totalServerItems:'worksheetTotalServerItems',
             pagingOptions: $scope.worksheetPagingOptions,
-            paginationPageSizes: [5, 10, 25, 50],
-            paginationPageSize: 5,
+            paginationPageSizes: $scope.worksheetPagingOptions.pageSizes,
+            paginationPageSize: $scope.worksheetPagingOptions.pageSize,
             filterOptions: $scope.worksheetFilterOptions,
             rowHeight: 50,
             multiSelect: false,
@@ -231,7 +228,6 @@ app.controller('worksheetCtrl',
         };
         //Swapping view open function for manageWorksheet
         $scope.openSwapForManageWorksheet = function(row) {
-            console.log("test");
             $scope.isWorksheetDefinition = false;
             setTimeout(function(){
                 $scope.manageWorksheetView = '';
@@ -240,8 +236,6 @@ app.controller('worksheetCtrl',
                 $scope.$apply();
                 $mdSidenav('manageWorksheetView').open()
                     .then(function(){
-                        console.log("worksheet");
-                        //$log.debug('open RIGHT is done');
                         worksheetServices.setWorksheetObj(row.entity);
                         worksheetServices.fetchOneWorksheetDefinitions(row.entity.definition_id).then(function(res){
                             worksheetServices.setWorksheetDefinitionsObj(res);
@@ -255,9 +249,7 @@ app.controller('worksheetCtrl',
         //Swapping view close function for manageWorksheet
         $scope.closeSwapForManageWorksheet = function() {
             $mdSidenav('manageWorksheetView').close()
-                .then(function(){
-                    //$log.debug('close RIGHT is done');
-                });
+                .then(function(){});
         };
         /*--------------- Manage Worksheet End ----------------------*/
     });
