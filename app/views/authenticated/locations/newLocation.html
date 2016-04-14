@@ -3,7 +3,7 @@
     <md-toolbar class="light-black-bg-1">
         <h1 class="md-toolbar-tools" layout="row" layout-align="space-between center">
             <span>New Location</span>
-            <md-button ng-click="closeNewLocationSwap()" class="md-raised md-accent">Back</md-button>
+            <md-button ng-click="closeNewLocationSwap()" class="md-raised md-primary">Back</md-button>
         </h1>
     </md-toolbar>
 
@@ -46,12 +46,12 @@
             </md-input-container>
 
             <div layout="row" layout-align="end center">
-                <md-button class="md-raised md-accent"
+                <md-button class="md-raised md-primary"
                            ng-disabled="locationForm.$invalid"
                            ng-click="saveLocation(location);">Save
                 </md-button>
 
-                <md-button class="md-warn md-raised md-hue-2"
+                <md-button class="md-warn md-raised"
                            ng-click="closeNewLocationSwap();">Cancel
                 </md-button>
             </div>

@@ -3,7 +3,7 @@
     <md-toolbar class="light-black-bg-1">
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
             {{editLocationName}}
-            <md-button ng-click="fnCloseLocationManageSwap();" class="md-raised md-accent">Back</md-button>
+            <md-button ng-click="fnCloseLocationManageSwap();" class="md-raised md-primary">Back</md-button>
         </div>
     </md-toolbar>
 
@@ -18,8 +18,8 @@
 
             <md-tab label="Recommended Service">
                 <md-content ng-controller="recommendedServiceCtrl" class="md-padding" ng-if="selectedLocationTab === 1">
-                    <div layout="row" layout-sm="column" layout-align="center center" ng-if="!isDataNotNull && !isMsgShow">
-                        <md-progress-circular  class="md-accent" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+                    <div layout="row" layout-sm="column" layout-align="center center" ng-if="!isDataNotNull && !isMsgShow" md-theme="rlo    ">
+                        <md-progress-circular  class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
                     </div>
                     <div ng-if="isMsgShow" layout="row" layout-align="center center"><h1>No recommended service available</h1></div>
                     <div layout-fill flex ng-if="isDataNotNull"
@@ -31,8 +31,8 @@
 
             <md-tab label="Repair Orders">
                 <md-content ng-controller="repairOrderCtrl" class="md-padding" ng-if="selectedLocationTab === 2">
-                    <div layout="row" layout-sm="column" layout-align="center center" ng-if="!isDataNotNull && !isMsgShow">
-                        <md-progress-circular  class="md-accent" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+                    <div layout="row" layout-sm="column" layout-align="center center" ng-if="!isDataNotNull && !isMsgShow" md-theme="rlo">
+                        <md-progress-circular  class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
                     </div>
                     <div ng-if="isMsgShow" layout="row" layout-align="center center"><h1>No repair orders available</h1></div>
                     <div layout-fill flex ng-if="isDataNotNull"
@@ -46,5 +46,3 @@
     </md-content>
 
 </md-sidenav>
-<!-- include swapping view-->
-<div ng-include="rightUserSwapView"></div>

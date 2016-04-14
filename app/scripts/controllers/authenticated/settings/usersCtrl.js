@@ -36,11 +36,11 @@ app.controller('UsersCtrl',
         };
 
         $scope.userAction = '<div layout="row"> ' +
-            '<md-button class="md-icon-button md-accent" ng-click="grid.appScope.fnUserEdit(row,$event);">' +
+            '<md-button class="md-icon-button md-primary" ng-click="grid.appScope.fnUserEdit(row,$event);">' +
             '   <md-icon md-font-set="material-icons">edit</md-icon>' +
             '   <md-tooltip md-direction="top">Edit</md-tooltip></md-button>' +
             '</md-button>' +
-            '<md-button class="md-icon-button md-warn md-hue-2" ng-click="grid.appScope.fnUserDelete(row,$event)">' +
+            '<md-button class="md-icon-button md-warn" ng-click="grid.appScope.fnUserDelete(row,$event)">' +
             '    <md-icon md-font-set="material-icons">delete</md-icon>' +
             '   <md-tooltip md-direction="top">Delete</md-tooltip>' +
             '</md-button> ' +

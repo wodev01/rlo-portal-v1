@@ -1,4 +1,4 @@
-<div class="md-padding">
+<div class="md-padding" md-theme="rlo">
     <div class="margin-bottom-10" layout="row" layout-align="space-between center">
         <div class="md-display-1">Account Settings</div>
     </div>
@@ -81,12 +81,12 @@
         </div>
 
         <div layout="row">
-            <md-button class="md-raised md-accent"
+            <md-button class="md-raised md-primary"
                        ng-disabled="partner_form.$invalid"
                        ng-click="updateUser();">Save
             </md-button>
 
-            <md-button class="md-warn md-raised md-hue-2" ng-click="cancel();">Cancel</md-button>
+            <md-button class="md-warn md-raised" ng-click="cancel();">Cancel</md-button>
 
             <md-progress-circular class="md-primary" md-theme="rlo" ng-if="isProcessing"
                                   md-mode="indeterminate"></md-progress-circular>
@@ -121,12 +121,12 @@
     </div>
 
     <div layout="row">
-        <md-button class="md-warn md-raised md-hue-2"
+        <md-button class="md-warn md-raised"
                    ng-disabled="partner_form.$invalid"
                    ng-click="">Remove
         </md-button>
 
-        <md-button class="md-raised md-accent" ng-click="openUserPaymentInfo($event);">Change</md-button>
+        <md-button class="md-raised md-primary" ng-click="openUserPaymentInfo($event);">Change</md-button>
     </div>
 
 </div>
