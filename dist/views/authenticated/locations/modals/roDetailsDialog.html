@@ -32,8 +32,8 @@
     </md-toolbar>
 
     <md-content class="md-padding" md-theme="grey">
-        <section class="md-whiteframe-10dp margin-bottom-10" layout="column">
-            <md-toolbar class="md-primary">
+        <section class="md-whiteframe-1dp margin-bottom-10" layout="column">
+            <md-toolbar class="md-primary md-hue-1">
                 <div class="md-toolbar-tools" layout="row" layout-align="center center">
                     <span>Summary</span>
                 </div>
@@ -111,8 +111,8 @@
             </div>
         </section>
 
-        <section class="md-whiteframe-10dp margin-bottom-10" layout="column">
-            <md-toolbar class="md-primary">
+        <section class="md-whiteframe-1dp margin-bottom-10" layout="column">
+            <md-toolbar class="md-primary md-hue-1">
                 <div class="md-toolbar-tools" layout="row" layout-align="center center">
                     <span>Customer Info</span>
                 </div>
@@ -170,8 +170,8 @@
             </div>
         </section>
 
-        <section class="md-whiteframe-10dp margin-bottom-10" layout="column">
-            <md-toolbar class="md-primary">
+        <section class="md-whiteframe-1dp margin-bottom-10" layout="column">
+            <md-toolbar class="md-primary md-hue-1">
                 <div class="md-toolbar-tools" layout="row" layout-align="center center">
                     <span>Vehicles Info</span>
                 </div>
@@ -207,8 +207,8 @@
             </div>
         </section>
 
-        <section class="md-whiteframe-10dp margin-bottom-10" layout="column">
-            <md-toolbar class="md-primary">
+        <section class="md-whiteframe-1dp margin-bottom-10" layout="column">
+            <md-toolbar class="md-primary md-hue-1">
                 <div class="md-toolbar-tools" layout="row" layout-align="center center">
                     <span>Service Details</span>
                 </div>
@@ -381,87 +381,6 @@
                     </div>
                 </md-list>
             </md-content>
-        </section>
-
-        <!--Inspection Details Section-->
-        <section class="md-whiteframe-10dp" layout="column">
-            <md-toolbar class="md-primary">
-                <div class="md-toolbar-tools" layout-align="center center">
-                    <span>Inspection</span>
-                </div>
-            </md-toolbar>
-
-            <div class="md-padding" layout="row" layout-align="center center" ng-if="repairOrder.inspection==null">
-                <div class="md-subhead">No inspection available.</div>
-            </div>
-
-            <div class="md-padding" layout="column" ng-if="repairOrder.inspection!=null" layout-margin>
-                <div layout="row" layout-xs="column">
-                    <div layout="row" flex>
-                        <label class="leftLabel">ID :</label>
-                        <label flex>{{repairOrder.inspection.id}}</label>
-                    </div>
-
-                    <div layout="row" flex>
-                        <label class="leftLabel">Repair Order ID :</label>
-                        <label flex>{{repairOrder.inspection.repairOrderId}}</label>
-                    </div>
-                </div>
-
-                <div>
-                    <div ng-repeat="(key, value) in
-                            repairOrder.inspection.inspectionDefinition.inspectedItemDefinitions | groupBy: 'category'"
-                         layout="column" layout-sm="column" ng-init="groupIndex = $index">
-                        <div ng-repeat="(locKey, locVal) in value | groupBy: 'location'" layout="column"
-                             layout-sm="column">
-                            <h3><span>{{ key }}&nbsp;</span><span ng-if="locKey">-&nbsp;{{locKey}}</span></h3>
-
-                            <div layout="row" layout-sm="column">
-                                <div class="datagrid">
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th>Description</th>
-                                            <th>Location</th>
-                                            <th>Before Status</th>
-                                            <th>Before Value</th>
-                                            <th>After Status</th>
-                                            <th>After Value</th>
-                                            <th>Notes</th>
-                                            <th>Due Days</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="val in locVal"
-                                            ng-init="fnInitInspectedItems(val.name,repairOrder.inspection.inspectedItems);
-                                                        rowIndex = $index;"
-                                            ng-class="groupIndex == selectedGroup && rowIndex == selectedRow ?
-                                                            'selected' : ''"
-                                            ng-click="setClickedRow(groupIndex, $index);">
-                                            <td>{{item[val.name].description}}</td>
-                                            <td>{{locKey}}</td>
-                                            <td>
-                                                <div ng-if="item[val.name].beforeStatus == 'green'"
-                                                     class="checked_item checked_item_green"></div>
-                                                <div ng-if="item[val.name].beforeStatus == 'red'"
-                                                     class="checked_item checked_item_red"></div>
-                                                <div ng-if="item[val.name].beforeStatus == 'yellow'"
-                                                     class="checked_item checked_item_yellow"></div>
-                                            </td>
-                                            <td>{{item[val.name].beforeValue}}</td>
-                                            <td>{{item[val.name].afterStatus}}</td>
-                                            <td>{{item[val.name].afterValue}}</td>
-                                            <td>{{item[val.name].notes}}</td>
-                                            <td>{{item[val.name].dueDays}}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </md-content>
 </md-dialog>

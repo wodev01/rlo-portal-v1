@@ -3,8 +3,6 @@ app.controller('LocationsCtrl',
     function ($scope, $mdSidenav, $rootScope, $mdDialog, $timeout, locationService) {
 
         $rootScope.editLocation = '';
-        $scope.rightView = 'views/authenticated/locations/newLocation.html';
-        $scope.rightEditView = 'views/authenticated/locations/manageLocation.html';
 
         $scope.isTabsLoad = false;
         $scope.locationData = [];
@@ -58,7 +56,6 @@ app.controller('LocationsCtrl',
         /*--------------- End Manage Location Swapping View ---------------*/
 
         // Retrieving data from server
-
         $scope.fnFetchLocationData = function () {
             $scope.isLocationMsgShow = $scope.isLocationDataNotNull = false;
             locationService.fetchLocation().then(function (data) {
@@ -75,7 +72,6 @@ app.controller('LocationsCtrl',
                 toastr.error('Failed retrieving location data.', 'STATUS CODE: ' + error.status);
             });
         };
-
 
         /*--------------- Location Grid Options ---------------*/
         $scope.locationAction = '<div layout="row">' +
@@ -157,4 +153,3 @@ app.controller('LocationsCtrl',
         $rootScope.rightEditView = 'views/authenticated/locations/manageLocation.html';
 
     });
-

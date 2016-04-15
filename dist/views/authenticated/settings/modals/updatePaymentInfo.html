@@ -1,6 +1,6 @@
 <md-dialog aria-label="Update Payment Info" id="updatePaymentInfo" flex-gt-sm="30" flex-sm="60" flex-xs="70">
 
-    <md-toolbar class="light-black-bg-1">
+    <md-toolbar>
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
             <span class="md-title">Update Payment Method</span>
         </div>
@@ -37,7 +37,7 @@
         </md-content>
     </md-dialog-content>
     <md-dialog-actions>
-        <md-button class="md-raised md-accent" ng-disabled="updatePaymentInfoForm.$invalid"
+        <md-button class="md-raised md-primary" ng-disabled="updatePaymentInfoForm.$invalid"
                    ng-click="updateUserPaymentInfo()">save
         </md-button>
         <md-button class="md-raised md-warn" ng-click="hide()">Cancel</md-button>

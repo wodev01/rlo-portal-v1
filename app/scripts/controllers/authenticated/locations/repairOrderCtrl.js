@@ -18,20 +18,14 @@ app.controller('repairOrderCtrl',
 
         $scope.getPagedDataAsync = function () {
             // repair Order call
-            if(locationService.getLocationObj().id) {
+            if (locationService.getLocationObj().id) {
                 $scope.locationID = locationService.getLocationObj().id;
                 locationService.repairOrder($scope.locationID)
-                    .then(function(data) {
+                    .then(function (data) {
                         if (data.length !== 0) {
                             $scope.isDataNotNull = true;
                             $scope.isMsgShow = false;
-                            $scope.repairOrdersData =  data;
-                            var tempData = angular.copy(data);
-                            if ($scope.gridApi) {
-                                $scope.filteredData = $scope.gridApi.core.getVisibleRows($scope.gridApi.grid);
-                            } else {
-                                $scope.filteredData = tempData.slice(0, _paginationPageSize);
-                            }
+                            $scope.repairOrdersData = data;
                         } else {
                             $scope.isDataNotNull = false;
                             $scope.isMsgShow = true;
@@ -47,73 +41,36 @@ app.controller('repairOrderCtrl',
 
         $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
 
-        $scope.roAction = '<div layout="row">' +
-            '<md-button class="md-icon-button md-accent" ng-click="grid.appScope.fnViewRODetails($event,row)">' +
-            '<md-icon md-font-set="material-icons">launch</md-icon>' +
-            '<md-tooltip md-direction="top">View</md-tooltip></md-button></div>';
         $scope.repairOrderGridOptions = {
             data: 'repairOrdersData',
             rowHeight: 50,
-            multiSelect:false,
+            multiSelect: false,
             enableRowSelection: true,
             enableRowHeaderSelection: false,
-            enableGridMenu:true,
             enableVerticalScrollbar: 0,
-            paginationPageSize: 5,
-            paginationPageSizes: [5, 10, 25, 50],
             columnDefs: [
-                {displayName:'',"name":"Action", cellTemplate: $scope.roAction, width:50, enableSorting:false, enableColumnMenu: false},
-                {field: 'closed', displayName: 'Closed', cellFilter: 'date:\'MM/dd/yyyy h:mm a\'', minWidth: 180},
-                {field: 'inspection', displayName: 'Inspection', cellFilter: 'inspection', minWidth: 100},
-                {field: 'order_number', displayName: 'RO #', minWidth: 100},
-                {field: 'customer.last_name', displayName: 'Customer', minWidth: 180},
-                {field: 'customer.phone_numbers', displayName: 'Phone', cellFilter: 'joinTelArray', minWidth: 200},
-                {field: 'customer.email_addresses', displayName: 'Email', cellFilter: 'joinArray', minWidth: 200},
-                {field: 'customer.postal_code', displayName: 'Postal Code', minWidth: 100},
-                {field: 'vehicle.year', displayName: 'Year', minWidth: 80},
-                {field: 'vehicle.make', displayName: 'Make', minWidth: 100},
-                {field: 'vehicle.model', displayName: 'Model', minWidth: 100},
-                {field: 'total_sold_price_cents', displayName: 'Total RO $', cellFilter: 'CentToDollar',  minWidth: 100},
-                {field: 'labor', displayName: 'Sold', cellFilter: 'sumOfValue:"sold_seconds" | toHHMMSS', visible: false, minWidth: 100},
-                {field: 'labor', displayName: 'Actual', cellFilter: 'sumOfValue:"actual_seconds" | toHHMMSS', visible: false, minWidth: 100}
+                {field: 'customer.first_name', displayName: 'Name', minWidth: 100, enableHiding: false},
+                {field: 'writer.full_name', displayName: 'Writer Name', minWidth: 150, enableHiding: false},
+                {field: 'order_status', displayName: 'Status', minWidth: 100, enableHiding: false},
+                {field: 'technician_name', displayName: 'Technician', minWidth: 150, enableHiding: false},
+                {
+                    field: 'opened',
+                    displayName: 'Arrived',
+                    cellFilter: 'date:"dd-MM-yyyy, h:mm:ss a"',
+                    minWidth: 150, enableHiding: false
+                },
+                {
+                    field: 'closed',
+                    displayName: 'Closed',
+                    cellFilter: 'date:"dd-MM-yyyy, h:mm:ss a"',
+                    minWidth: 150, enableHiding: false
+                }
             ],
             onRegisterApi: function (gridApi) {
-                $scope.gridApi = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     row.isSelected = true;
                 });
-
-                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-                    $scope.filteredData = $scope.gridApi.core.getVisibleRows($scope.gridApi.grid);
-                });
             }
-        };
-
-        $scope.fnViewRODetails = function (ev, row) {
-            $scope.fnOpenRepairOrderModal(ev, row.entity);
-        };
-
-        /*---------- Repair Order Dialog --------------------*/
-        $scope.fnOpenRepairOrderModal = function (ev, repairOrder) {
-            $mdDialog.show({
-                controller: 'repairOrderModalCtrl',
-                templateUrl: 'views/authenticated/locations/modals/roDetailsDialog.html',
-                targetEvent: ev,
-                resolve: {
-                    repairOrder: function () {
-                        return repairOrder;
-                    },
-                    repairOrders: function () {
-                        return $scope.repairOrdersData;
-                    }
-                }
-            });
-        };
-        /*---------------------- End Repair Orders -----------------------------*/
-
-        $scope.setClickedRow = function (groupIndex, rowIndex) {
-            $scope.selectedGroup = groupIndex;
-            $scope.selectedRow = rowIndex;
         };
 
     });

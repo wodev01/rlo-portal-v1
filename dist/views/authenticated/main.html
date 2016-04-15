@@ -4,8 +4,13 @@
             <md-icon aria-label="Menu">menu</md-icon>
         </md-button>
 
-        <div layout="row">
+        <div layout="row" layout-align="space-between center" layout-fill>
             <img class="img-responsive rlo-logo" alt="Rlo training" src="images/rlo-full-logo.png"/>
+
+            <md-button class="md-icon-button" ng-href="http://rlotraining.com/demo/" target="_blank">
+                <md-icon md-font-set="material-icons">play_circle_filled</md-icon>
+                <md-tooltip ng-if="$root.isMobile === null" md-direction="left">Watch Video</md-tooltip>
+            </md-button>
         </div>
 
         <md-menu md-position-mode="target-right target">
@@ -56,6 +61,7 @@
             <md-icon md-font-set="material-icons">place</md-icon> Locations</md-button>
 
         <md-button class="md-accent" ng-class="fnIsActive('/worksheet')"
+                   ng-if="fnCheckSubscription(userSubscriptions,['rlo_standard'])"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.worksheet">
             <md-icon md-font-set="material-icons">worksheet</md-icon> Monthly Worksheet</md-button>
 

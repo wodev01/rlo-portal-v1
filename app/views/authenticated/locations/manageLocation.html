@@ -23,8 +23,8 @@
                     </div>
                     <div ng-if="isMsgShow" layout="row" layout-align="center center"><h1>No repair orders available</h1></div>
                     <div layout-fill flex ng-if="isDataNotNull"
-                         ui-grid-selection ui-grid-auto-resize ui-grid-pagination
-                         ng-style="$root.fnReturnGridHeight(filteredData.length, '', true, false)"
+                         ui-grid-selection ui-grid-auto-resize
+                         ng-style="$root.fnReturnGridHeight(repairOrdersData.length, '', false, false)"
                          ui-grid="repairOrderGridOptions"></div>
                 </md-content>
             </md-tab>

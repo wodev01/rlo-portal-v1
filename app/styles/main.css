@@ -142,3 +142,13 @@ div.settings-tab-container md-tabs.md-rlo-theme.md-primary > md-tabs-wrapper > m
     word-wrap: break-word;
 }
 /*---------- End: Settings Tab ----------*/
+
+/*---------- Download App Dialog ----------*/
+md-dialog#download-app {
+    max-width: 350px;
+}
+
+md-dialog#download-app md-dialog-content {
+    line-height: 2em;
+    text-align: justify;
+}

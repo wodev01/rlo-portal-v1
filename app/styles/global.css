@@ -1206,3 +1206,10 @@ md-dialog[aria-label=Delete] button[aria-label=Delete] {
     border-color: #C9302C !important;
     color: rgba(255, 255, 255, 0.87) !important;
 }
+
+/*---------- md-dialog create button (app download dialog) ----------*/
+md-dialog[aria-label=Ok] button[aria-label=Create] {
+    background-color: rgb(91, 123, 227) !important;
+    border-color: #5b94e3 !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+}
