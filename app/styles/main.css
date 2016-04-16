@@ -152,3 +152,9 @@ md-dialog#download-app md-dialog-content {
     line-height: 2em;
     text-align: justify;
 }
+
+/*---------- Terms of service Dialog ----------*/
+md-dialog#terms-of-service-dialog p {
+    text-align: justify;
+    line-height: 1.846;
+}
