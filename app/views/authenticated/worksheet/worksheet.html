@@ -1,17 +1,17 @@
 <div class="md-padding overflow-auto tab-pane" id="worksheets-pane">
         <div layout="row" layout-align="space-between center">
             <div class="md-display-1">Monthly Worksheet</div>
-            <md-button class="md-raised md-accent" ng-click="fnNewWorksheet()">New Worksheet</md-button>
+            <md-button class="md-raised md-primary" ng-click="fnNewWorksheet()">New Worksheet</md-button>
         </div>
 
-        <p class="help-block">Monthly Worksheet</p>
-        <!--ngGrid-->
+        <p class="md-subhead">Monthly Worksheet</p>
+        <!--UI Grid-->
         <div ng-if="isWorksheetMsgShow" layout="row" layout-align="center center">
             <div class="md-headline"> No worksheet available</div>
         </div>
         <div ng-if="!isWorksheetData && !isWorksheetMsgShow" layout="column" layout-align="center center" layout-fill
              flex>
-            <md-progress-circular class="md-accent" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+            <md-progress-circular class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
         </div>
         <div ng-if="isWorksheetData" ng-style="$root.fnReturnGridHeight(worksheetData.length, 50, true)"
              ui-grid="worksheetGridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-pagination></div>

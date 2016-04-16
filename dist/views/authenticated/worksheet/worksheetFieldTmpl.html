@@ -2,7 +2,7 @@
     <div flex>{{obj.label}}</div>
     <md-button class="md-icon-button md-primary margin-right-10" aria-label="tooltip">
         <md-icon md-font-set="material-icons">help</md-icon>
-        <md-tooltip md-direction="top">{{obj.label}}</md-tooltip>
+        <md-tooltip ng-if="$root.isMobile === null" md-direction="top">{{obj.label}}</md-tooltip>
     </md-button>
     <md-input-container class="margin-bottom-0 margin-top-0 margin-right-10">
         <md-select ng-model="obj.source"  aria-label="select source">

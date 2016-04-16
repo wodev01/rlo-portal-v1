@@ -6,7 +6,7 @@
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon md-font-set="material-icons">close</md-icon>
-                    <md-tooltip md-direction="top">Close</md-tooltip>
+                    <md-tooltip ng-if="$root.isMobile === null" md-direction="top">Close</md-tooltip>
                 </md-button>
             </div>
         </md-toolbar>
@@ -61,7 +61,7 @@
                     <input name="confirmPassword" type="password" ng-model="user.confirmPassword" required
                            minlength="5">
                 </md-input-container>
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="agreed" class="md-accent" required>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="agreed" class="md-primary" required>
                     <a ng-click="fnOpenTermsOfServiceModal($event)" href="javascript:void(0)">I agree to the Terms of
                         Service</a>
                 </md-checkbox>
@@ -69,11 +69,11 @@
 
             </div>
         </md-dialog-content>
-        <md-dialog-actions layout="row">
+        <md-dialog-actions>
             <md-button class="md-raised md-primary" ng-disabled="businessForm.$invalid" ng-click="registerUser()">
                 Create Account
             </md-button>
-            <md-button class="md-warn md-raised md-hue-2" ng-click="hide()">Cancel</md-button>
+            <md-button class="md-warn md-raised" ng-click="hide()">Cancel</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>

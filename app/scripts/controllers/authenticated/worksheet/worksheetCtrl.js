@@ -179,8 +179,14 @@ app.controller('worksheetCtrl',
             }
         }, true);
 
-        $scope.worksheetAction = '<div layout="row"><md-button class="md-icon-button md-warn md-hue-2" ng-click="grid.appScope.fnWorksheetDelete(row,$event)"><md-icon md-font-set="material-icons">delete</md-icon><md-tooltip ng-if="$root.isMobile === null" md-direction="top">Remove</md-tooltip></md-button>' +
-            '<md-button class="md-icon-button md-accent" ng-click="grid.appScope.openWorksheet(row,$event)"><md-icon md-font-set="material-icons">visibility</md-icon><md-tooltip ng-if="$root.isMobile === null" md-direction="top">Open</md-tooltip></md-button></md-button></div>';
+        $scope.worksheetAction = '<div layout="row">' +
+            '<md-button class="md-icon-button md-primary" ng-click="grid.appScope.openWorksheet(row,$event)">' +
+            '<md-icon md-font-set="material-icons">visibility</md-icon>' +
+            '<md-tooltip ng-if="$root.isMobile === null" md-direction="top">Open</md-tooltip></md-button>' +
+            '<md-button class="md-icon-button md-warn" ng-click="grid.appScope.fnWorksheetDelete(row,$event)">' +
+            '<md-icon md-font-set="material-icons">delete</md-icon>' +
+            '<md-tooltip ng-if="$root.isMobile === null" md-direction="top">Remove</md-tooltip></md-button>' +
+            '</div>';
         $scope.worksheetGridOptions = {
             data: 'worksheetData',
             totalServerItems:'worksheetTotalServerItems',

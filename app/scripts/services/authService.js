@@ -18,6 +18,7 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                             else{*/
                                 var userSubscriptions = JSON.parse(response.subscriptions);
                                 angular.forEach(userSubscriptions, function (obj) {
+                                    /*obj.subscriptions.push('rlo_standard');*/
                                     angular.forEach(subscriptions, function (value) {
                                         if (hasSubscriptions) {
                                             if (obj.subscriptions.indexOf(value) === -1) {
