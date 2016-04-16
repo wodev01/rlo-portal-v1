@@ -75,12 +75,16 @@
 <script type="text/javascript" src="scripts/vendor/chargeio.min.js"></script>
 <!-- endbuild -->
 
-<!-- build:js({.tmp,app}) scripts/polyfill.min.js -->
-<script type="text/javascript" src="scripts/vendor/polyfill.js"></script>
-<!-- endbuild -->
-
-<!-- build:js({.tmp,app}) scripts/within-viewport.min.js -->
+<!-- build:js({.tmp,app}) scripts/plugin.min.js -->
 <script type="text/javascript" src="scripts/vendor/within-viewport.js"></script>
+
+<!--Fix SVGPathSeg for newer browsers-->
+<script type="text/javascript" src="scripts/vendor/polyfill.js"></script>
+
+<!--Fixes for iPad devices-->
+<script type="text/javascript" src="scripts/vendor/interaction.js"></script>
+<script type="text/javascript" src="scripts/vendor/config.js"></script>
+
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -91,15 +95,20 @@
 <!-- START : SERVICES -->
 <script src="scripts/services/errorMsgService.js"></script>
 <script src="scripts/services/encodeParamService.js"></script>
+<script src="scripts/services/interceptorsService.js"></script>
+<script src="scripts/services/authService.js"></script>
+
 <script src="scripts/services/dashboard/dashboardServices.js"></script>
 <script src="scripts/services/locations/locationService.js"></script>
+<script src="scripts/services/worksheet/worksheetServices.js"></script>
+
+<!-- START : Settings SERVICES -->
 <script src="scripts/services/settings/accountServices.js"></script>
 <script src="scripts/services/settings/userService.js"></script>
 <script src="scripts/services/settings/billingHistoryService.js"></script>
 <script src="scripts/services/settings/paymentServices.js"></script>
-<script src="scripts/services/interceptorsService.js"></script>
-<script src="scripts/services/authService.js"></script>
-<script src="scripts/services/worksheet/worksheetServices.js"></script>
+<!-- END : Settings SERVICES -->
+
 <!-- END : SERVICES -->
 
 <!-- START : CTRL -->

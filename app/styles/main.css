@@ -32,9 +32,6 @@
 }
 
 /*---------- START: Dashbaord Tab ----------*/
-#dashboard-tab {
-    min-height: 600px;
-}
 
 #dashboard-tab section .dashContainerContent {
     height: 352px;
