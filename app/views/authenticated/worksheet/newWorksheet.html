@@ -26,7 +26,7 @@
                 <label>Period End</label>
                 <input name="period_end" ng-model="newWorksheet.period_end" ng-click="openDatePicker($event,newWorksheet,'period_end')" readonly style="cursor: pointer">
             </md-input-container>
-            <div layout="row" layout-align="end center">
+            <div layout="row" layout-align="end center" layout-xs="column">
                 <md-button class="md-raised md-primary" ng-disabled="newWorksheetForm.$invalid" ng-click="fnCreateWorksheet(newWorksheet)">Create New Worksheet</md-button>
                 <md-button class="md-warn md-raised" ng-click="closeSwap()" ng-click="cancel()">Cancel</md-button>
             </div>
