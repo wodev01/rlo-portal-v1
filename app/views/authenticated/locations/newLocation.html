@@ -46,6 +46,7 @@
             </md-input-container>
 
             <div layout="row" layout-align="end center">
+                <md-progress-circular ng-if="isProcessing" class="md-primary" md-mode="indeterminate"></md-progress-circular>
                 <md-button class="md-raised md-primary"
                            ng-disabled="locationForm.$invalid"
                            ng-click="saveLocation(location);">Save

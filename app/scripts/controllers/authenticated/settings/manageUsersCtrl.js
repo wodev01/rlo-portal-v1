@@ -28,7 +28,8 @@ app.controller('ManageUsersCtrl',
             $scope.isProcessing = true;
             $scope.userForm.$invalid = true;
             userService.saveUser(id, user).then(function(res){
-                if(res === null){
+                console.log(res);
+                if(res.data === null){
                     toastr.success('User saved successfully.');
                     if(id === null){$scope.fnResetForm();}
                     $scope.isProcessing = false;
