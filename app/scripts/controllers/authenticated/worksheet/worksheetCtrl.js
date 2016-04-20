@@ -196,16 +196,16 @@ app.controller('worksheetCtrl',
 			'</div>';
 		$scope.worksheetGridOptions = {
 			data: 'worksheetData',
-			totalServerItems: 'worksheetTotalServerItems',
-			paginationPageSizes: [5, 10, 25, 50],
 			enablePaginationControls: true,
-			paginationPageSize: 10,
 			filterOptions: $scope.worksheetFilterOptions,
 			rowHeight: 50,
 			multiSelect: false,
 			enableRowSelection: true,
 			enableRowHeaderSelection: false,
+			paginationPageSizes: [5, 10, 25, 50],
+			paginationPageSize: 10,
 			enableVerticalScrollbar: 0,
+			enableFiltering: true,
 			columnDefs: [
 				{
 					field: 'period_start',
@@ -223,7 +223,8 @@ app.controller('worksheetCtrl',
 					cellTemplate: $scope.worksheetAction,
 					width: 100,
 					enableSorting: false,
-					enableColumnMenu: false
+					enableColumnMenu: false,
+					enableFiltering: false
 				}
 			]
 		};
@@ -280,4 +281,3 @@ app.controller('worksheetCtrl',
 		};
 		/*--------------- Manage Worksheet End ----------------------*/
 	});
-
