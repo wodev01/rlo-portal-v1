@@ -185,7 +185,7 @@ app.controller('DashboardCtrl',
                 '       The location has never communicated. Please download location setup here. <br/>' +
                 '       <a href="' + $scope.appDownloadUrl + '" target="_blank">Click to download setup</a>.' +
                 '   </md-dialog-content>' +
-                '   <md-dialog-actions>' +
+                '   <md-dialog-actions layout-margin>' +
                 '       <md-button class="md-raised" ng-click="fnHide()">Cancel</md-button>' +
                 '       <md-button class="md-raised md-primary" ng-click="fnGoTo()">Location Setup</md-button>' +
                 '   </md-dialog-actions>' +

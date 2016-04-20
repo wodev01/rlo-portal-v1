@@ -982,6 +982,7 @@ html, body {
 
 .overflow-hidden {
     overflow: hidden;
+    -ms-overflow-style: none;
 }
 
 .border {
@@ -1212,4 +1213,9 @@ md-dialog[aria-label=Ok] button[aria-label=Create] {
     background-color: rgb(91, 123, 227) !important;
     border-color: #5b94e3 !important;
     color: rgba(255, 255, 255, 0.87) !important;
+}
+
+/* In IE-11(Edge) to popup dialog center of the screen*/
+md-dialog.fullScreenDialog {
+    width: 100%;
 }

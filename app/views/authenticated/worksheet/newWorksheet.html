@@ -12,22 +12,34 @@
         <form id="newWorksheetForm" layout="column" name="newWorksheetForm" novalidate>
             <md-input-container>
                 <label for="worksheet_default_location" class="control-label col-sm-2">Location</label>
-                <md-select aria-label="select location" id="worksheet_default_location" ng-model="newWorksheet.location_id" ng-disabled="locations.length == 1">
+                <md-select aria-label="select location" id="worksheet_default_location"
+                           ng-model="newWorksheet.location_id" ng-disabled="locations.length == 1">
                     <md-option ng-repeat="location in locations" value="{{location.id}}" ng-disabled="$index === 1">
                         {{location.name}}
                     </md-option>
                 </md-select>
             </md-input-container>
+
             <md-input-container class="margin-bottom-0">
                 <label>Period Start</label>
-                <input name="period_start" ng-model="newWorksheet.period_start" ng-click="openDatePicker($event,newWorksheet,'period_start')" readonly style="cursor: pointer">
+                <input name="period_start" ng-model="newWorksheet.period_start"
+                       ng-click="openDatePicker($event,newWorksheet,'period_start')" readonly style="cursor: pointer">
             </md-input-container>
+
             <md-input-container class="margin-bottom-0">
                 <label>Period End</label>
-                <input name="period_end" ng-model="newWorksheet.period_end" ng-click="openDatePicker($event,newWorksheet,'period_end')" readonly style="cursor: pointer">
+                <input name="period_end" ng-model="newWorksheet.period_end"
+                       ng-click="openDatePicker($event,newWorksheet,'period_end')" readonly style="cursor: pointer">
             </md-input-container>
+
             <div layout="row" layout-align="end center" layout-xs="column">
-                <md-button class="md-raised md-primary" ng-disabled="newWorksheetForm.$invalid" ng-click="fnCreateWorksheet(newWorksheet)">Create New Worksheet</md-button>
+                <md-progress-circular class="md-primary" ng-if="isProcessing"
+                                      md-mode="indeterminate"></md-progress-circular>
+
+                <md-button class="md-raised md-primary" ng-disabled="newWorksheetForm.$invalid"
+                           ng-click="fnCreateWorksheet(newWorksheet)">Create New Worksheet
+                </md-button>
+
                 <md-button class="md-warn md-raised" ng-click="closeSwap()" ng-click="cancel()">Cancel</md-button>
             </div>
         </form>

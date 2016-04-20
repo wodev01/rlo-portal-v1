@@ -1,15 +1,18 @@
 <div layout id="{{obj.id}}">
     <div style="min-width: 300px;word-wrap: break-word;">{{obj.label}}</div>
+
     <md-button style="min-width: 100px;" class="md-icon-button md-primary margin-right-10" aria-label="tooltip">
         <md-icon md-font-set="material-icons">help</md-icon>
         <md-tooltip ng-if="$root.isMobile === null" md-direction="top">{{obj.label}}</md-tooltip>
     </md-button>
+
     <md-input-container class="margin-bottom-0 margin-top-0 margin-right-10" style="min-width:120px">
-        <md-select ng-model="obj.source"  aria-label="select source">
+        <md-select ng-model="obj.source" aria-label="select source">
             <md-option value="AUTOMATIC">Automatic</md-option>
             <md-option value="MANUAL">Manual</md-option>
         </md-select>
     </md-input-container>
+
     <md-input-container class="margin-bottom-0 margin-top-0" style="min-width:120px">
         <input aria-label="value" ng-model="obj.value" ng-disabled="obj.source == 'AUTOMATIC'">
     </md-input-container>

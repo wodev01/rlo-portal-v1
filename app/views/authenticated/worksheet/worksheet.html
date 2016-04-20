@@ -13,7 +13,7 @@
              flex>
             <md-progress-circular class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
         </div>
-        <div ng-if="isWorksheetData" ng-style="$root.fnReturnGridHeight(worksheetData.length, 50, true)"
+        <div ng-if="isWorksheetData" ng-style="$root.fnReturnGridHeight(worksheetData.length, '', true)"
              ui-grid="worksheetGridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-pagination></div>
 </div>
 <!-- include swapping view-->
