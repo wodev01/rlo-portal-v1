@@ -3,7 +3,7 @@
         <div class="md-display-1">Account Settings</div>
     </div>
 
-    <form name="partner_form" id="partner_form" layout="column" novalidate flex="70">
+    <form name="partner_form" id="partner_form" layout="column" novalidate flex="70" flex-xs=100>
         <div class="md-title">Business Information</div>
         <div layout="column" class="md-padding">
             <md-input-container class="remove-error-space">
@@ -96,14 +96,14 @@
 
     <div class="md-title margin-top-10">Payment Information</div>
     <div class="md-padding" layout="column" flex="70" flex-sm="100" flex-xs="100">
-        <md-content flex class="md-padding subscriptions">
+        <md-content class="md-padding subscriptions">
             <label><strong><u>Subscriptions</u></strong></label>
 
-            <div layout="row" layout-margin layout-fill>
+            <div layout="row" layout-margin>
                 <div flex class="t-head">Location</div>
                 <div flex class="t-head">Subscriptions</div>
             </div>
-            <div ng-repeat="subscription in paymentInfo.subscriptionsList" layout="row" layout-margin layout-fill>
+            <div ng-repeat="subscription in paymentInfo.subscriptionsList" layout="row" layout-margin>
                 <div flex class="t-body">{{subscription.locationName}}</div>
                 <div flex class="t-body">{{subscription.subscriptions}}</div>
             </div>
@@ -127,6 +127,7 @@
         </md-button>
 
         <md-button class="md-raised md-primary" ng-click="openUserPaymentInfo($event);">Change</md-button>
+
     </div>
 
 </div>

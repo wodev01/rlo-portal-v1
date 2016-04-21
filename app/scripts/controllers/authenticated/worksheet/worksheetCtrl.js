@@ -157,7 +157,6 @@ app.controller('worksheetCtrl',
                         }
                     });
                 }
-                $('.gridStyle').trigger('resize');
             }, 100);
         };
 
@@ -190,9 +189,9 @@ app.controller('worksheetCtrl',
         $scope.worksheetGridOptions = {
             data: 'worksheetData',
             totalServerItems:'worksheetTotalServerItems',
-            pagingOptions: $scope.worksheetPagingOptions,
-            paginationPageSizes: $scope.worksheetPagingOptions.pageSizes,
-            paginationPageSize: $scope.worksheetPagingOptions.pageSize,
+            paginationPageSizes: [5, 10, 25, 50],
+            enablePaginationControls: true,
+            paginationPageSize: 10,
             filterOptions: $scope.worksheetFilterOptions,
             rowHeight: 50,
             multiSelect: false,
