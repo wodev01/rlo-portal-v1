@@ -155,3 +155,24 @@ md-dialog#terms-of-service-dialog p {
     text-align: justify;
     line-height: 1.846;
 }
+
+/*------- START : md-date-time --------*/
+.time-date.date-only > .control > .slider > .date-control{
+    padding-left: 0;
+}
+.time-date > .display > .title,
+.time-date > .control > .slider > .date-control > .days .day-cell:hover,
+.time-date > .control > .slider > .date-control > .days .day-cell:active{
+    background-color: #2D2D2D;
+}
+.time-date > .display > .content,
+.time-date > .control > .slider > .date-control > .days .day-cell.selected{
+    background-color: #5B7BE3;
+}
+.time-date button, .time-date .button{
+    color: #2D2D2D;
+}
+.time-date > .control > .slider > .date-control > .days .day-cell.today{
+    color: #F44336;
+}
+/*------- END : md-date-time --------*/
