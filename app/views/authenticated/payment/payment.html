@@ -54,20 +54,20 @@
                 <div layout layout-sm="column">
                     <md-input-container class="remove-error-space">
                         <md-icon class="md-primary margin-top-5">date_range</md-icon>
-                        <input type="number" name="exp_month" placeholder="Month" ng-model="payment.exp_month" maxlength="2" required  ng-pattern="/^(0?[1-9]|1[012])$/"/>
+                        <input type="number" name="exp_month" placeholder="Month" ng-model="payment.exp_month" min="1" max="12" required />
                         <div ng-if="paymentForm.$submitted || paymentForm.exp_month.$touched">
                             <span class="error-msg" ng-if="paymentForm.exp_month.$error.required">Expiration month is required.</span>
-                            <span class="error-msg" ng-if="paymentForm.exp_month.$error.maxlength">Expiration month is too big maximum 2 digit required.</span>
-                            <span class="error-msg" ng-if="paymentForm.exp_month.$error.pattern">This field must contain valid expiration month.</span>
+                            <span class="error-msg" ng-if="paymentForm.exp_month.$error.min && paymentForm.exp_month.$error.max">Month is invalid.</span>
+                            <span class="error-msg" ng-if="paymentForm.exp_month.$error.pattern">This field must contain numbers only.</span>
                         </div>
                     </md-input-container>
                     <md-input-container  class="remove-error-space">
                         <md-icon class="md-primary margin-top-5">date_range</md-icon>
-                        <input type="number" name="exp_year" placeholder="Year" ng-model="payment.exp_year" maxlength="4" required  ng-pattern="/^[20][0-9]{3}$/"/>
+                        <input type="number" name="exp_year" placeholder="Year" ng-model="payment.exp_year" min="1000" max="9999" required />
                         <div ng-if="paymentForm.$submitted || paymentForm.exp_year.$touched">
                             <span class="error-msg" ng-if="paymentForm.exp_year.$error.required">Expiration year is required.</span>
-                            <span class="error-msg" ng-if="paymentForm.exp_year.$error.maxlength">Expiration year is too big maximum 4 digit required.</span>
-                            <span class="error-msg" ng-if="paymentForm.exp_year.$error.pattern">This field must contain valid expiration year.</span>
+                            <span class="error-msg" ng-if="paymentForm.exp_year.$error.min || paymentForm.exp_year.$error.max">Year is invalid.</span>
+                            <span class="error-msg" ng-if="paymentForm.exp_year.$error.number">This field must contain numbers only.</span>
                         </div>
                     </md-input-container>
                 </div>
