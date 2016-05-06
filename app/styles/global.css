@@ -1005,7 +1005,7 @@ html, body {
     color: #FF0000 !important;
 }
 
-img.rlo-logo{
+img.rlo-logo {
     height: 65px;
 }
 
@@ -1015,10 +1015,10 @@ img.rlo-logo{
     height: auto;
 }
 
-.container-bg{
-  background: url('../images/blurry-cars.jpg');
-  background-size: cover;
-  height: 100%;
+.container-bg {
+    background: url('../images/blurry-cars.jpg');
+    background-size: cover;
+    height: 100%;
 }
 
 /*---------- Search Filter ----------*/
@@ -1064,9 +1064,15 @@ md-sidenav.right-side-nav {
 md-toolbar.light-black-bg-1 {
     background-color: #313639 !important;
 }
+
 /*---------- Remove error space in input-container ----------*/
 md-input-container.remove-error-space .md-errors-spacer {
-  min-height: 0;
+    min-height: 0;
+}
+
+md-input-container .error-msg {
+    color: rgb(213, 0, 0);
+    font-size: 12px;
 }
 
 /*---------- Custom Table ----------*/
