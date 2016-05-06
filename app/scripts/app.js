@@ -98,12 +98,14 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
         .state('login', {
             url: "/login",
             templateUrl: "views/login.html",
-            controller: 'LoginCtrl'
+            controller: 'LoginCtrl',
+            data:{pageTitle:'Login'}
         })
         .state('resetPassword', {
             url: "/reset-password",
             templateUrl: "views/resetPassword.html",
             controller: 'ResetPasswordCtrl',
+            data:{pageTitle:'Reset Password'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnResetPWTokenVerified();
@@ -114,6 +116,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: "/verify",
             templateUrl: "views/authenticated/verify/verify.html",
             controller: 'VerifyCtrl',
+            data:{pageTitle:'User Verify'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnUserVerified();
@@ -124,6 +127,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: "/payment",
             templateUrl: "views/authenticated/payment/payment.html",
             controller: 'PaymentCtrl',
+            data:{pageTitle:'Payment'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnPaymentVerified();
@@ -140,6 +144,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: "dashboard",
             controller: 'DashboardCtrl',
             templateUrl: "views/authenticated/dashboard/dashboard.html",
+            data:{pageTitle:'Dashboard'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser(['rlo_daily_email']);
@@ -150,6 +155,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: "locations",
             controller: 'LocationsCtrl',
             templateUrl: "views/authenticated/locations/locations.html",
+            data:{pageTitle:'Locations'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser([]);
@@ -160,6 +166,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: 'worksheet',
             controller: 'worksheetCtrl',
             templateUrl: 'views/authenticated/worksheet/worksheet.html',
+            data:{pageTitle:'Worksheet'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser(['rlo_standard']);
@@ -170,6 +177,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: 'location/setup',
             controller: 'LocationSetupCtrl',
             templateUrl: "views/authenticated/locationSetup/locationSetup.html",
+            data:{pageTitle:'Location Setup'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser([]);
@@ -180,6 +188,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: 'settings/:settingsName',
             controller: 'SettingsCtrl',
             templateUrl: 'views/authenticated/settings/settings.html',
+            data:{pageTitle:'Settings'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
                     return AuthService.fnGetUser([]);
