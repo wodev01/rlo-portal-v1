@@ -67,7 +67,7 @@ app.controller('AccountSettingsCtrl',
             var id = CarglyPartner.user.id;
             if (id.length === 0) { id = null; }
             $scope.isProcessing = true;
-           /* accountServices.updateAccount (id, $scope.user).then(function(res){
+            accountServices.updateAccount (id, $scope.user).then(function(res){
                 if(res===null){
                     $scope.fetchAccount();
                     toastr.success('Account information saved successfully.');
@@ -75,7 +75,7 @@ app.controller('AccountSettingsCtrl',
                     toastr.error('Account information can\'t saved.');
                 }
                 $scope.isProcessing = false;
-            });*/
+            });
         };
 
         $scope.openUserPaymentInfo = function (ev) {
