@@ -2,7 +2,6 @@
 app.controller('AccountSettingsCtrl',
 	function ($scope, accountServices, $mdDialog, toastr, globalTimeZone, $stateParams, locationService) {
         $scope.isProcessing = false;
-        $scope.isSaveBtnDisabled = false;
         $scope.updateAccountForm = function () {
             if (CarglyPartner.accountInfo) {
                 $scope.user = {
@@ -68,8 +67,7 @@ app.controller('AccountSettingsCtrl',
             var id = CarglyPartner.user.id;
             if (id.length === 0) { id = null; }
             $scope.isProcessing = true;
-            $scope.isSaveBtnDisabled = true;
-            accountServices.updateAccount (id, $scope.user).then(function(res){
+           /* accountServices.updateAccount (id, $scope.user).then(function(res){
                 if(res===null){
                     $scope.fetchAccount();
                     toastr.success('Account information saved successfully.');
@@ -77,8 +75,7 @@ app.controller('AccountSettingsCtrl',
                     toastr.error('Account information can\'t saved.');
                 }
                 $scope.isProcessing = false;
-                $scope.isSaveBtnDisabled = false;
-            });
+            });*/
         };
 
         $scope.openUserPaymentInfo = function (ev) {
