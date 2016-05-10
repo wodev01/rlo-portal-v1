@@ -1,5 +1,5 @@
 'use strict';
-app.controller('SignUpCtrl', function ($scope, $location, $mdDialog, ErrorMsg, globalTimeZone, toastr) {
+app.controller('SignUpCtrl', function ($scope, $location, $timeout, $mdDialog, ErrorMsg, globalTimeZone, toastr) {
 
     $scope.user = {businessTimezone:'US/Central'};
     $scope.timeZoneDDOptions = globalTimeZone;
@@ -12,6 +12,10 @@ app.controller('SignUpCtrl', function ($scope, $location, $mdDialog, ErrorMsg, g
         $mdDialog.cancel();
     };
 
+    $scope.fnRefreshDom = function(){
+        $timeout(function(){$scope.$apply();});
+    };
+
     $scope.fnRegisterUser = function (user) {
         if (user.password !== user.confirmPassword) {
             toastr.error('Password must be matched');
@@ -19,13 +23,14 @@ app.controller('SignUpCtrl', function ($scope, $location, $mdDialog, ErrorMsg, g
             $scope.isProcessing = true;
             CarglyPartner.createPartner(user,
                 function () {
-                    $scope.user = {businessTimezone:'US/Central'};
                     $scope.isProcessing = false;
+                    $scope.fnRefreshDom();
                     $scope.fnHide();
                     $location.url('/verify');
                 },
                 function (failure) {
                     $scope.isProcessing = false;
+                    $scope.fnRefreshDom();
                     if (typeof failure === 'undefined' || failure.status !== 409) {
                         toastr.remove();
                         toastr.error('An unexpected error occurred on the server. Please reload the page and try again. If the problem continues, contact us at support@cargly.com.');

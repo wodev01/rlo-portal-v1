@@ -27,16 +27,16 @@
 <!-- Body content -->
 <md-content class="container-bg">
     <div style="min-height: 20px;">
-        <md-progress-linear class="md-warn" ng-if="user.isProcessing" md-mode="indeterminate"></md-progress-linear>
+        <md-progress-linear class="md-warn" ng-if="isProcessing" md-mode="indeterminate"></md-progress-linear>
     </div>
     <div layout="column" layout="column" layout-align="space-between center" flex>
         <md-content class="md-whiteframe-z1 md-padding center-form-container" layout-margin>
-            <p>A confirmation message has been sent to your email address.
+            <p class="text-justify">A confirmation message has been sent to your email address.
                 Please click the link in that email in order to confirm this account.
                 Remember to check your <strong>SPAM</strong> folder if you can't find the message.</p>
             <p>If you have any questions please contact support@rlotraining.com.</p>
-            <md-button class="md-raised md-primary" ng-click="fnReconfirmUser()" ng-fi="!isReconfirmUser">Resend Confirmation Email</md-button>
-            <span id="reconfirm_sent" ng-if="isReconfirmUser">Reconfirmation email sent!</span>
+            <md-button class="md-raised md-primary" ng-disabled="isProcessing"
+                       ng-click="fnReconfirmUser()">Resend Confirmation Email</md-button>
         </md-content>
     </div>
 </md-content>

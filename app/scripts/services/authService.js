@@ -1,124 +1,84 @@
 'use strict';
-app.factory('AuthService', ['$q', '$state', '$cookies', 'paymentService', 'cookieName', 'ErrorMsg',
-    function ($q, $state, $cookies, paymentService, cookieName, ErrorMsg) {
+app.factory('AuthService', ['$q', '$state', '$location', '$timeout', '$cookies', 'paymentService', 'cookieName', 'ErrorMsg',
+    function ($q, $state, $location, $timeout, $cookies, paymentService, cookieName, ErrorMsg) {
         var AuthService = {};
 
-        AuthService.fnGetUser = function (subscriptions) {
-            var token = $cookies.get(cookieName);
-            var defer = $q.defer();
+        function fnCheckSubscription(res, subscription){
             var hasSubscriptions = true;
-            CarglyPartner._getUser(token, function (response) {
-                if (response.verified === 'true') {
-                    /*paymentService.fetchUserPaymentInfo()
-                        .then(function(res){
-                            if(res.status === 404){
-                                $state.go('payment');
-                                defer.resolve(res);
-                            }
-                            else{*/
-                                var userSubscriptions = JSON.parse(response.subscriptions);
-                                angular.forEach(userSubscriptions, function (obj) {
-                                    /*obj.subscriptions.push('rlo_standard');*/
-                                    angular.forEach(subscriptions, function (value) {
-                                        if (hasSubscriptions) {
-                                            if (obj.subscriptions.indexOf(value) === -1) {
-                                                hasSubscriptions = false;
-                                            }
-                                        }
-                                    });
-                                });
-                                if (hasSubscriptions) {
-                                    defer.resolve(hasSubscriptions);
-                                } else {
-                                    $state.go('main.dashboard');
-                                    defer.resolve(response);
-                                }
-                            /*}
-                        });*/
-                } else {
-                    $state.go('verify');
-                    defer.resolve();
-                }
-            },function(error){
-                if (error) {
-                    ErrorMsg.CheckStatusCode(error.status);
-                }
-            });
-
-            return defer.promise;
-        };
-
-        AuthService.fnUserVerified = function () {
-            var token = $cookies.get(cookieName);
-            var defer = $q.defer();
-            CarglyPartner._getUser(token, function (response) {
-                if (response.verified === 'true') {
-                    /*paymentService.fetchUserPaymentInfo()
-                        .then(function(res){
-                            if(res.status === 404){
-                                $state.go('payment');
-                                defer.resolve(res);
-                            }
-                            else{*/
-                                $state.go('main.dashboard');
-                                defer.resolve(response);
-                            /*}
-                        });*/
-                } else {
-                    $state.go('verify');
-                    defer.resolve();
-                }
-            },function(error){
-                if (error) {
-                    ErrorMsg.CheckStatusCode(error.status);
-                }
-                defer.reject();
-            });
-
-            return defer.promise;
-        };
-
-        AuthService.fnPaymentVerified = function () {
-            var token = $cookies.get(cookieName);
-            var defer = $q.defer();
-            CarglyPartner._getUser(token, function (response) {
-                if (response.verified === 'true') {
-                    /*paymentService.fetchUserPaymentInfo()
-                        .then(function(res){
-                            if(res.status === 404){
-                                defer.resolve(res);
-                            }
-                            else{*/
-                                $state.go('main.dashboard');
-                                defer.resolve(response);
-                            /*}
-                        });*/
-                } else {
-                    $state.go('verify');
-                    defer.resolve();
-                }
-            },function(error){
-                if (error) {
-                    ErrorMsg.CheckStatusCode(error.status);
-                }
-                defer.reject();
-            });
-
-            return defer.promise;
-        };
-
-        AuthService.fnResetPWTokenVerified = function () {
-            var defer = $q.defer();
-            /*----- Resolve reset password page if resetpw token exist ----*/
-            if(CarglyPartner.queryParams != null && CarglyPartner.queryParams.resetpw != null
-                && CarglyPartner.queryParams.resetpw != '') {
-                defer.resolve();
-            } else {
-                $state.go('login');
-                defer.resolve();
+            if(res.subscriptions !== null && res.subscriptions !== "") {
+                var userSubscriptions = JSON.parse(res.subscriptions);
+                angular.forEach(userSubscriptions, function (obj) {
+                    if (hasSubscriptions) {
+                        if (obj.subscriptions.indexOf(subscription) === -1) {
+                            hasSubscriptions = false;
+                        }
+                    }
+                });
+            }else{
+                hasSubscriptions = false;
             }
+            return hasSubscriptions;
+        }
+
+        AuthService.fnGetUser = function (subscription) {
+            var token = $cookies.get(cookieName);
+            var defer = $q.defer();
+            if(!angular.isUndefined(token)) {
+                CarglyPartner._getUser(token, function (response) {
+                    /*---- Check User is verified or not ----*/
+                    if (response.verified === 'true') {
+                        /*----- if User is verified then check it's payment info available or not ----*/
+                        /*paymentService.fetchUserPaymentInfo()
+                            .then(function (res) {
+                                if (res.status === 404) {
+                                    $timeout(function(){$state.go('payment')});
+                                    defer.resolve(res);
+                                }
+                                else {*/
+                                    /*---- Check subscription if define in ui route ----*/
+                                    if(!angular.isUndefined(subscription)){
+                                        if (fnCheckSubscription(response, subscription)) {
+                                            defer.resolve(response);
+                                        } else {
+                                            $timeout(function(){$state.go('main.dashboard')});
+                                            defer.resolve(response);
+                                        }
+                                    } else {
+                                        /*---- If User already login and it's payment or verify information available then verify and payment page not access ---*/
+                                        if($location.path() === '/verify' ||
+                                            $location.path() === '/payment'){
+                                            $location.url('/dashboard');
+                                            defer.resolve(response);
+                                        } else {
+                                            defer.resolve(response);
+                                        }
+                                    }
+
+                                /*}
+                            });*/
+                    } else {
+                        $timeout(function(){$state.go('verify')});
+                        defer.resolve();
+                    }
+                }, function (error) {
+                    if (error) {
+                        ErrorMsg.CheckStatusCode(error.status);
+                    }
+                });
+            } else {
+                if(CarglyPartner.queryParams != null && CarglyPartner.queryParams.resetpw != null
+                    && CarglyPartner.queryParams.resetpw != '') {
+                    $timeout(function(){$state.go('resetPassword')});
+                    defer.resolve();
+                } else {
+                    $timeout(function(){$state.go('login')});
+                    defer.resolve();
+                }
+            }
+
             return defer.promise;
         };
+
         return AuthService;
     }
 ]);
