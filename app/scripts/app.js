@@ -147,7 +147,7 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             data:{pageTitle:'Dashboard'},
             resolve: {
                 AuthService: ['AuthService', function (AuthService) {
-                    return AuthService.fnGetUser(['rlo_daily_email']);
+                    return AuthService.fnGetUser([]);
                 }]
             }
         })

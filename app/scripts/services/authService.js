@@ -1,6 +1,6 @@
 'use strict';
-app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'cookieName', 'ErrorMsg',
-    function ($q, $location, $cookies, paymentService, cookieName, ErrorMsg) {
+app.factory('AuthService', ['$q', '$state', '$cookies', 'paymentService', 'cookieName', 'ErrorMsg',
+    function ($q, $state, $cookies, paymentService, cookieName, ErrorMsg) {
         var AuthService = {};
 
         AuthService.fnGetUser = function (subscriptions) {
@@ -12,7 +12,7 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                     /*paymentService.fetchUserPaymentInfo()
                         .then(function(res){
                             if(res.status === 404){
-                                $location.url('/payment');
+                                $state.go('payment');
                                 defer.resolve(res);
                             }
                             else{*/
@@ -30,13 +30,13 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                                 if (hasSubscriptions) {
                                     defer.resolve(hasSubscriptions);
                                 } else {
-                                    $location.url('/locations');
+                                    $state.go('main.dashboard');
                                     defer.resolve(response);
                                 }
                             /*}
                         });*/
                 } else {
-                    $location.url('/verify');
+                    $state.go('verify');
                     defer.resolve();
                 }
             },function(error){
@@ -56,28 +56,23 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                     /*paymentService.fetchUserPaymentInfo()
                         .then(function(res){
                             if(res.status === 404){
-                                $location.url('/payment');
+                                $state.go('payment');
                                 defer.resolve(res);
                             }
                             else{*/
-                                var userSubscriptions = JSON.parse(response.subscriptions);
-                                angular.forEach(userSubscriptions, function (obj) {
-                                    if(obj.subscriptions.indexOf('rlo_daily_email') !== -1){
-                                        $location.url('/dashboard');
-                                    }else{
-                                        $location.url('/locations');
-                                    }
-                                });
+                                $state.go('main.dashboard');
                                 defer.resolve(response);
                             /*}
                         });*/
                 } else {
+                    $state.go('verify');
                     defer.resolve();
                 }
             },function(error){
                 if (error) {
                     ErrorMsg.CheckStatusCode(error.status);
                 }
+                defer.reject();
             });
 
             return defer.promise;
@@ -94,25 +89,19 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                                 defer.resolve(res);
                             }
                             else{*/
-                                var userSubscriptions = JSON.parse(response.subscriptions);
-                                angular.forEach(userSubscriptions, function (obj) {
-                                    if(obj.subscriptions.indexOf('rlo_daily_email') !== -1){
-                                        $location.url('/dashboard');
-                                    }else{
-                                        $location.url('/locations');
-                                    }
-                                });
+                                $state.go('main.dashboard');
                                 defer.resolve(response);
                             /*}
                         });*/
                 } else {
-                    $location.url('/verify');
+                    $state.go('verify');
                     defer.resolve();
                 }
             },function(error){
                 if (error) {
                     ErrorMsg.CheckStatusCode(error.status);
                 }
+                defer.reject();
             });
 
             return defer.promise;
@@ -125,7 +114,7 @@ app.factory('AuthService', ['$q', '$location', '$cookies', 'paymentService', 'co
                 && CarglyPartner.queryParams.resetpw != '') {
                 defer.resolve();
             } else {
-                $location.url('/login');
+                $state.go('login');
                 defer.resolve();
             }
             return defer.promise;

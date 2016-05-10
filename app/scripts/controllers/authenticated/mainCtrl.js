@@ -36,7 +36,7 @@ app.controller('MainCtrl', function ($scope, $mdDialog, $location, $cookies, coo
 
     $scope.fnCheckSubscription = function (userSubscriptions, subscriptions) {
         var hasSubscriptions = true;
-        if(userSubscriptions) {
+        if(userSubscriptions !== null && userSubscriptions !== "") {
             angular.forEach(userSubscriptions, function (obj) {
                 /*obj.subscriptions.push('rlo_standard');*/
                 angular.forEach(subscriptions, function (value) {
@@ -47,6 +47,8 @@ app.controller('MainCtrl', function ($scope, $mdDialog, $location, $cookies, coo
                     }
                 });
             });
+        }else{
+            hasSubscriptions = false;
         }
         return hasSubscriptions;
     };

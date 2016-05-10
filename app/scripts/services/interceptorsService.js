@@ -21,11 +21,11 @@ app.factory('InterceptorsService',
                 }
                 else {
                     //If user already login and trying to access login screen.
-                    if ($location.path() === '/login') {
+                    if ($location.path() === '/login' || $location.path() === '/reset-password') {
                         var state = $injector.get('$state');
                         var stateParams = $injector.get('$stateParams');
                         if (state.current.name !== '') {
-                            if (state.current.name === 'login') {
+                            if (state.current.name === 'login' || state.current.name === 'resetPassword') {
                                 $location.url('/dashboard');
                             } else {
                                 state.go(state.current.name, stateParams);

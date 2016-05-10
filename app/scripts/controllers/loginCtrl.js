@@ -24,14 +24,7 @@ app.controller('LoginCtrl',
                                     $location.url('/payment');
                                 }
                                 else {*/
-                                    var userSubscriptions = JSON.parse(response.subscriptions);
-                                    angular.forEach(userSubscriptions, function (obj) {
-                                        if(obj.subscriptions.indexOf('rlo_daily_email') !== -1){
-                                            $location.url('/dashboard');
-                                        }else{
-                                            $location.url('/locations');
-                                        }
-                                    });
+                                    $location.url('/dashboard');
                                 /*}
                             });*/
                     } else {

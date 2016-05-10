@@ -2,18 +2,18 @@
 app.controller('PaymentCtrl',
     function ($scope, $cookies, $state, $mdDialog, cookieName, paymentService) {
 
+        $scope.payment = {isProcessing: false};
+
+        ChargeIO.init({
+            public_key: 'm_zuT9A5oAQTilLxkc_PWanQ'
+        });
+
         $scope.fnLogout = function () {
             CarglyPartner.logout(function () {
                 $cookies.remove(cookieName);
                 $state.go('login');
             }, function () {});
         };
-
-        $scope.payment = {isProcessing: false};
-
-        ChargeIO.init({
-            public_key: 'm_zuT9A5oAQTilLxkc_PWanQ'
-        });
 
         $scope.fnUpdateUserPaymentInfo = function (payment) {
             payment.isProcessing = true;
