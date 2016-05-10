@@ -1,4 +1,12 @@
-<div id="dashboard-tab" class="md-padding overflow-auto" ng-init="fnInitDashboard();">
+<div layout="row" layout-fill layout-align="center center"
+        ng-if="!fnCheckSubscription(userSubscriptions,['rlo_daily_email'])">
+    <div class="md-headline text-center" style="color: #3B529B;line-height: 2em;" flex="50">
+        <p>Get the RLO Live Composite Dashboard today!</p>
+        <p>Go <a href="http://rlotraining.com/kpi" target="_blank">here</a> to Sign Up!</p>
+    </div>
+</div>
+<div id="dashboard-tab" class="md-padding overflow-auto" ng-init="fnInitDashboard();"
+     ng-if="fnCheckSubscription(userSubscriptions,['rlo_daily_email'])">
     <!-- Location Drop-down -->
     <div layout="row">
         <md-input-container>

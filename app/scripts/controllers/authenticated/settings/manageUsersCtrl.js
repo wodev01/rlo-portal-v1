@@ -28,7 +28,6 @@ app.controller('ManageUsersCtrl',
             $scope.isProcessing = true;
             $scope.userForm.$invalid = true;
             userService.saveUser(id, user).then(function(res){
-                console.log(res);
                 if(res.data === null){
                     toastr.success('User saved successfully.');
                     if(id === null){$scope.fnResetForm();}
@@ -37,7 +36,6 @@ app.controller('ManageUsersCtrl',
                     $rootScope.$broadcast('refreshUsers');
                     $scope.fnCloseSwap();
                 }else{
-                    toastr.error('User can\'t saved. Repeated email or invalid information.');
                     $scope.isProcessing = false;
                 }
             });
