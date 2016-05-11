@@ -20,6 +20,17 @@ app.factory('AuthService', ['$q', '$state', '$location', '$http', '$timeout', '$
             return hasSubscriptions;
         }
 
+        function fnStateGo(stateName, defer) {
+            if ($state.current.name === '') {
+                $timeout(function () {
+                    $state.go(stateName);
+                });
+                defer.resolve();
+            } else {
+                defer.reject();
+            }
+        }
+
         AuthService.fnGetUser = function (subscription) {
             var token = $cookies.get(cookieName);
             var defer = $q.defer();
@@ -31,8 +42,11 @@ app.factory('AuthService', ['$q', '$state', '$location', '$http', '$timeout', '$
                         /*paymentService.fetchUserPaymentInfo()
                             .then(function (res) {
                                 if (res.status === 404) {
-                                    $timeout(function () {$state.go('payment');});
-                                    defer.resolve(res);
+                                    if ($location.path() === '/payment' && $state.current.name === 'login') {
+                                        defer.resolve(res);
+                                    } else {
+                                        fnStateGo('payment', defer);
+                                    }
                                 }
                                 else {*/
                                     /*---- Check subscription if define in ui route ----*/
@@ -40,18 +54,16 @@ app.factory('AuthService', ['$q', '$state', '$location', '$http', '$timeout', '$
                                         if (fnCheckSubscription(response, subscription)) {
                                             defer.resolve(response);
                                         } else {
-                                            $timeout(function () {$state.go('main.dashboard');});
-                                            defer.resolve(response);
+                                            fnStateGo('main.dashboard', defer);
                                         }
                                     } else {
                                         /*---- If User already login and it's payment or verify information available then verify and payment page not access ---*/
                                         if ($location.path() === '/verify' ||
                                             $location.path() === '/payment') {
-                                            if ($state.current.name === '') {
-                                                $location.url('/dashboard');
+                                            if (fnCheckSubscription(response, subscription)) {
                                                 defer.resolve(response);
                                             } else {
-                                                defer.reject();
+                                                fnStateGo('main.dashboard', defer);
                                             }
                                         } else {
                                             defer.resolve(response);
@@ -60,8 +72,11 @@ app.factory('AuthService', ['$q', '$state', '$location', '$http', '$timeout', '$
                                 /*}
                             });*/
                     } else {
-                        $timeout(function () {$state.go('verify');});
-                        defer.resolve();
+                        if ($location.path() === '/verify' && $state.current.name === 'login') {
+                            defer.resolve(response);
+                        } else {
+                            fnStateGo('verify', defer);
+                        }
                     }
                 }, function (error) {
                     if (error) {
@@ -71,19 +86,9 @@ app.factory('AuthService', ['$q', '$state', '$location', '$http', '$timeout', '$
             } else {
                 if (CarglyPartner.queryParams != null && CarglyPartner.queryParams.resetpw != null
                     && CarglyPartner.queryParams.resetpw != '') {
-                    if ($state.current.name === '') {
-                        $timeout(function () {$state.go('resetPassword');});
-                        defer.resolve();
-                    } else {
-                        defer.reject();
-                    }
+                    fnStateGo('resetPassword', defer);
                 } else {
-                    if ($state.current.name === '') {
-                        $timeout(function () {$state.go('login');});
-                        defer.resolve();
-                    } else {
-                        defer.reject();
-                    }
+                    fnStateGo('login', defer);
                 }
             }
 
