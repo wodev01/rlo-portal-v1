@@ -48,6 +48,13 @@
     text-align: center;
 }
 
+/*---------- Bar-chart no data message ----------*/
+.bar-data-msg {
+    position: absolute;
+    top: 40%;
+    left: 40%
+}
+
 /*---------- END: Dashbaord Tab ----------*/
 
 /*---------- Location Setup ----------*/
@@ -126,7 +133,7 @@ div.settings-tab-container md-tabs.md-rlo-theme.md-primary > md-tabs-wrapper > m
 
 /*---------- Account Settings ----------*/
 .subscriptions {
-    border: solid thin #000;
+    border: solid thin #000000;
 }
 
 .subscriptions .t-head {
@@ -138,6 +145,7 @@ div.settings-tab-container md-tabs.md-rlo-theme.md-primary > md-tabs-wrapper > m
     padding: 5px;
     word-wrap: break-word;
 }
+
 /*---------- End: Settings Tab ----------*/
 
 /*---------- Download App Dialog ----------*/
@@ -157,22 +165,27 @@ md-dialog#terms-of-service-dialog p {
 }
 
 /*------- START : md-date-time --------*/
-.time-date.date-only > .control > .slider > .date-control{
+.time-date.date-only > .control > .slider > .date-control {
     padding-left: 0;
 }
+
 .time-date > .display > .title,
 .time-date > .control > .slider > .date-control > .days .day-cell:hover,
-.time-date > .control > .slider > .date-control > .days .day-cell:active{
+.time-date > .control > .slider > .date-control > .days .day-cell:active {
     background-color: #2D2D2D;
 }
+
 .time-date > .display > .content,
-.time-date > .control > .slider > .date-control > .days .day-cell.selected{
+.time-date > .control > .slider > .date-control > .days .day-cell.selected {
     background-color: #5B7BE3;
 }
-.time-date button, .time-date .button{
+
+.time-date button, .time-date .button {
     color: #2D2D2D;
 }
-.time-date > .control > .slider > .date-control > .days .day-cell.today{
+
+.time-date > .control > .slider > .date-control > .days .day-cell.today {
     color: #F44336;
 }
+
 /*------- END : md-date-time --------*/

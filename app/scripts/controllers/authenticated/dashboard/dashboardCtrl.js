@@ -1440,18 +1440,7 @@ app.controller('DashboardCtrl',
 
 
 		/*---------------- End of Marketing Source --------------*/
-		/*---------- Init ----------*/
-		$scope.fnInitDashboard = function () {
-			$scope.partnerId = CarglyPartner.user.partnerId;
-			$scope.fnCreatechartGroupsDD();
-			$scope.fnFetchAgentAppDownloadUrl();
-		};
 
-		$scope.fnRefreshDom = function () {
-			if (!$scope.$$phase) {
-				$scope.$apply();
-			}
-		};
 
 		/*---------- Dashboard Request made only when the section is visible in the view-port ----------*/
 		var dashboardSection = {};
@@ -1504,19 +1493,32 @@ app.controller('DashboardCtrl',
 
 		}
 
-		/*---------- Bind scroll and window resize event for viewport changes ----------*/
-		$('#dashboard-tab').on('scroll', function () {
-			var elem = $('#content #dashboard-tab');
-			if (elem && elem.length != 0) {
-				dashboardRequest();
+		$scope.fnRefreshDom = function () {
+			if (!$scope.$$phase) {
+				$scope.$apply();
 			}
-		});
+		};
 
-		$(window).resize(function () {
-			var elem = $('#content #dashboard-tab');
-			if (elem && elem.length != 0) {
-				dashboardRequest();
-			}
-		});
+		/*---------- Init ----------*/
+		$scope.fnInitDashboard = function () {
+			$scope.partnerId = CarglyPartner.user.partnerId;
+			$scope.fnCreatechartGroupsDD();
+			$scope.fnFetchAgentAppDownloadUrl();
+
+			/*---------- Bind scroll and window resize event for viewport changes ----------*/
+			$('#content #dashboard-tab').on('scroll', function () {
+				var elem = $('#content #dashboard-tab');
+				if (elem && elem.length != 0) {
+					dashboardRequest();
+				}
+			});
+
+			$(window).resize(function () {
+				var elem = $('#content #dashboard-tab');
+				if (elem && elem.length != 0) {
+					dashboardRequest();
+				}
+			});
+		};
 
 	});

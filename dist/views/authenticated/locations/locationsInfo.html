@@ -7,7 +7,8 @@
                 <input name="name" ng-model="location.name" required ng-minlength="5">
                 <div ng-if="locationForm.$submitted || locationForm.name.$touched">
                     <span class="error-msg" ng-if="locationForm.name.$error.required">Location name is required.</span>
-                    <span class="error-msg" ng-if="locationForm.name.$error.minlength">Location name is too short minimum 5 characters required.</span>
+                    <span class="error-msg" ng-if="locationForm.name.$error.minlength">
+                        Location name is too short minimum 5 characters required.</span>
                 </div>
             </md-input-container>
 
@@ -16,8 +17,10 @@
                 <input name="phone" ng-model="location.phone" required ng-minlength="10" ng-maxlength="20">
                 <div ng-if="locationForm.$submitted || locationForm.phone.$touched">
                     <span class="error-msg" ng-if="locationForm.phone.$error.required">Phone is required.</span>
-                    <span class="error-msg" ng-if="locationForm.phone.$error.minlength">Phone is too short minimum 10 digits required.</span>
-                    <span class="error-msg" ng-if="locationForm.phone.$error.maxlength">Phone is too big maximum 20 digits required.</span>
+                    <span class="error-msg" ng-if="locationForm.phone.$error.minlength">
+                        Phone is too short minimum 10 digits required.</span>
+                    <span class="error-msg" ng-if="locationForm.phone.$error.maxlength">
+                        Phone is too big maximum 20 digits allowd.</span>
                 </div>
             </md-input-container>
 
@@ -48,12 +51,13 @@
             <md-input-container class="remove-error-space">
                 <label>Zip</label>
                 <input name="zip" ng-model="location.zip" required ng-pattern="/^[0-9]+$/" md-maxlength="10"
-                       ng-minlength="5" ng-maxlength="20">
+                       ng-minlength="5">
                 <div ng-if="locationForm.$submitted || locationForm.zip.$touched">
                     <span class="error-msg" ng-if="locationForm.zip.$error.required">Zip is required.</span>
-                    <span class="error-msg" ng-if="locationForm.zip.$error.minlength">Zip is too short minimum 5 digit required.</span>
-                    <span class="error-msg" ng-if="locationForm.zip.$error.maxlength">Zip is too big maximum 20 digit required.</span>
-                    <span class="error-msg" ng-if="locationForm.zip.$error.pattern">This field must contain numbers only.</span>
+                    <span class="error-msg" ng-if="locationForm.zip.$error.minlength">
+                        Zip is too short minimum 5 digit required.</span>
+                    <span class="error-msg" ng-if="locationForm.zip.$error.pattern">
+                        This field must contain numbers only.</span>
                 </div>
             </md-input-container>
 
@@ -71,7 +75,7 @@
                                       md-mode="indeterminate"></md-progress-circular>
 
                 <md-button type="submit" class="md-raised md-primary"
-                           ng-disabled="isProcessing" ng-click="locationForm.$valid && saveLocation(location)">Save
+                           ng-disabled="isProcessing" ng-click="locationForm.$valid && saveLocation(location);">Save
                 </md-button>
 
                 <md-button class="md-warn md-raised"
