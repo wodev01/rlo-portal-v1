@@ -1,11 +1,11 @@
 'use strict';
-app.factory('AuthService', ['$q', '$state', '$location', '$timeout', '$cookies', 'paymentService', 'cookieName', 'ErrorMsg',
-    function ($q, $state, $location, $timeout, $cookies, paymentService, cookieName, ErrorMsg) {
+app.factory('AuthService', ['$q', '$state', '$location', '$http', '$timeout', '$cookies', 'paymentService', 'cookieName', 'ErrorMsg',
+    function ($q, $state, $location, $http, $timeout, $cookies, paymentService, cookieName, ErrorMsg) {
         var AuthService = {};
 
-        function fnCheckSubscription(res, subscription){
+        function fnCheckSubscription(res, subscription) {
             var hasSubscriptions = true;
-            if(res.subscriptions !== null && res.subscriptions !== "") {
+            if (res.subscriptions !== null && res.subscriptions !== "") {
                 var userSubscriptions = JSON.parse(res.subscriptions);
                 angular.forEach(userSubscriptions, function (obj) {
                     if (hasSubscriptions) {
@@ -14,7 +14,7 @@ app.factory('AuthService', ['$q', '$state', '$location', '$timeout', '$cookies',
                         }
                     }
                 });
-            }else{
+            } else {
                 hasSubscriptions = false;
             }
             return hasSubscriptions;
@@ -23,7 +23,7 @@ app.factory('AuthService', ['$q', '$state', '$location', '$timeout', '$cookies',
         AuthService.fnGetUser = function (subscription) {
             var token = $cookies.get(cookieName);
             var defer = $q.defer();
-            if(!angular.isUndefined(token)) {
+            if (!angular.isUndefined(token)) {
                 CarglyPartner._getUser(token, function (response) {
                     /*---- Check User is verified or not ----*/
                     if (response.verified === 'true') {
@@ -31,33 +31,36 @@ app.factory('AuthService', ['$q', '$state', '$location', '$timeout', '$cookies',
                         /*paymentService.fetchUserPaymentInfo()
                             .then(function (res) {
                                 if (res.status === 404) {
-                                    $timeout(function(){$state.go('payment')});
+                                    $timeout(function () {$state.go('payment');});
                                     defer.resolve(res);
                                 }
                                 else {*/
                                     /*---- Check subscription if define in ui route ----*/
-                                    if(!angular.isUndefined(subscription)){
+                                    if (!angular.isUndefined(subscription)) {
                                         if (fnCheckSubscription(response, subscription)) {
                                             defer.resolve(response);
                                         } else {
-                                            $timeout(function(){$state.go('main.dashboard')});
+                                            $timeout(function () {$state.go('main.dashboard');});
                                             defer.resolve(response);
                                         }
                                     } else {
                                         /*---- If User already login and it's payment or verify information available then verify and payment page not access ---*/
-                                        if($location.path() === '/verify' ||
-                                            $location.path() === '/payment'){
-                                            $location.url('/dashboard');
-                                            defer.resolve(response);
+                                        if ($location.path() === '/verify' ||
+                                            $location.path() === '/payment') {
+                                            if ($state.current.name === '') {
+                                                $location.url('/dashboard');
+                                                defer.resolve(response);
+                                            } else {
+                                                defer.reject();
+                                            }
                                         } else {
                                             defer.resolve(response);
                                         }
                                     }
-
                                 /*}
                             });*/
                     } else {
-                        $timeout(function(){$state.go('verify')});
+                        $timeout(function () {$state.go('verify');});
                         defer.resolve();
                     }
                 }, function (error) {
@@ -66,13 +69,21 @@ app.factory('AuthService', ['$q', '$state', '$location', '$timeout', '$cookies',
                     }
                 });
             } else {
-                if(CarglyPartner.queryParams != null && CarglyPartner.queryParams.resetpw != null
+                if (CarglyPartner.queryParams != null && CarglyPartner.queryParams.resetpw != null
                     && CarglyPartner.queryParams.resetpw != '') {
-                    $timeout(function(){$state.go('resetPassword')});
-                    defer.resolve();
+                    if ($state.current.name === '') {
+                        $timeout(function () {$state.go('resetPassword');});
+                        defer.resolve();
+                    } else {
+                        defer.reject();
+                    }
                 } else {
-                    $timeout(function(){$state.go('login')});
-                    defer.resolve();
+                    if ($state.current.name === '') {
+                        $timeout(function () {$state.go('login');});
+                        defer.resolve();
+                    } else {
+                        defer.reject();
+                    }
                 }
             }
 
