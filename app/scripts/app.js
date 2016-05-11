@@ -30,10 +30,7 @@ var app = angular
     .constant('pagingOptions', ["5", "10", "25", "50", "100"])
     .constant('globalTimeZone', ["US/Hawaii", "US/Alaska", "US/Pacific", "US/Arizona", "US/Mountain", "US/Central", "US/Eastern"]);
 
-app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRouterProvider, toastr) {
-
-    // Pull in `Request/Response Service` from the dependency injector
-    $httpProvider.interceptors.push('InterceptorsService');
+app.config(function ($mdThemingProvider, $stateProvider, $urlRouterProvider, toastr) {
 
     $mdThemingProvider.definePalette('rloPalette', {
         '50': 'C0C9E5',
@@ -99,13 +96,23 @@ app.config(function ($httpProvider, $mdThemingProvider, $stateProvider, $urlRout
             url: "/login",
             templateUrl: "views/login.html",
             controller: 'LoginCtrl',
-            data:{pageTitle:'Login'}
+            data:{pageTitle:'Login'},
+            resolve: {
+                AuthService: ['AuthService', function (AuthService) {
+                    return AuthService.AuthTokenVerify();
+                }]
+            }
         })
         .state('resetPassword', {
             url: "/reset-password",
             templateUrl: "views/resetPassword.html",
             controller: 'ResetPasswordCtrl',
-            data:{pageTitle:'Reset Password'}
+            data:{pageTitle:'Reset Password'},
+            resolve: {
+                AuthService: ['AuthService', function (AuthService) {
+                    return AuthService.AuthTokenVerify();
+                }]
+            }
         })
         .state('verify', {
             url: "/verify",
