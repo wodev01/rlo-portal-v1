@@ -38,6 +38,7 @@ app.controller('MainCtrl', function ($scope, $mdDialog, $location, $cookies, coo
         var hasSubscriptions = true;
         if(userSubscriptions !== null && userSubscriptions !== "") {
             angular.forEach(userSubscriptions, function (obj) {
+                /*if (obj.subscriptions.indexOf('rlo_standard') === -1) {obj.subscriptions.push('rlo_standard');}*/
                 if (hasSubscriptions) {
                     if (obj.subscriptions.indexOf(subscription) === -1) {
                         hasSubscriptions = false;

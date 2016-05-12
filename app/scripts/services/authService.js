@@ -8,6 +8,7 @@ app.factory('AuthService', ['$q', '$state', '$location', '$http', '$timeout', '$
             if (res.subscriptions !== null && res.subscriptions !== "") {
                 var userSubscriptions = JSON.parse(res.subscriptions);
                 angular.forEach(userSubscriptions, function (obj) {
+                    /*if (obj.subscriptions.indexOf('rlo_standard') === -1) {obj.subscriptions.push('rlo_standard');}*/
                     if (hasSubscriptions) {
                         if (obj.subscriptions.indexOf(subscription) === -1) {
                             hasSubscriptions = false;
