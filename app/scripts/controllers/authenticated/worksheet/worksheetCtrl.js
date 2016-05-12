@@ -188,10 +188,10 @@ app.controller('worksheetCtrl',
 
 		$scope.worksheetAction = '<div layout="row">' +
 			'<md-button class="md-icon-button md-primary" ng-click="grid.appScope.openWorksheet(row,$event)">' +
-			'<md-icon md-font-set="material-icons">visibility</md-icon>' +
+			'<md-icon md-font-set="fa fa-lg fa-fw fa-eye"></md-icon>' +
 			'<md-tooltip ng-if="$root.isMobile === null" md-direction="top">Open</md-tooltip></md-button>' +
 			'<md-button class="md-icon-button md-warn" ng-click="grid.appScope.fnWorksheetDelete(row,$event)">' +
-			'<md-icon md-font-set="material-icons">delete</md-icon>' +
+			'<md-icon md-font-set="fa fa-lg fa-fw fa-trash"></md-icon>' +
 			'<md-tooltip ng-if="$root.isMobile === null" md-direction="top">Remove</md-tooltip></md-button>' +
 			'</div>';
 		$scope.worksheetGridOptions = {

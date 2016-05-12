@@ -1,7 +1,7 @@
 <md-toolbar class="top-header" ng-init="fnInitMain()">
     <div class="md-toolbar-tools">
-        <md-button ng-click="fnToggleSideNav('left')" hide-gt-sm class="md-icon-button">
-            <md-icon aria-label="Menu">menu</md-icon>
+        <md-button aria-label="Menu Bar" ng-click="fnToggleSideNav('left')" hide-gt-sm class="md-icon-button">
+            <md-icon md-font-set="fa fa-lg fa-fw fa-bars"></md-icon>
         </md-button>
 
         <div layout="row" flex>
@@ -9,15 +9,15 @@
         </div>
 
         <div layout="row">
-            <md-button class="md-icon-button" ng-href="http://rlotraining.com/demo/" target="_blank">
-                <md-icon md-font-set="material-icons">play_circle_filled</md-icon>
+            <md-button aria-label="Watch Video" class="md-icon-button" ng-href="http://rlotraining.com/demo/" target="_blank">
+                <md-icon md-font-set="fa fa-lg fa-fw fa-play-circle"></md-icon>
                 <md-tooltip ng-if="$root.isMobile === null" md-direction="left">Watch Video</md-tooltip>
             </md-button>
         </div>
 
         <md-menu md-position-mode="target-right target">
-            <md-button ng-click="$mdOpenMenu($event)">
-                <span ng-bind="userObj.name"></span><md-icon md-font-set="material-icons">keyboard_arrow_down</md-icon>
+            <md-button aria-label="Open Menu" ng-click="$mdOpenMenu($event)">
+                <span ng-bind="userObj.name"></span><md-icon md-font-set="fa fa-lg fa-fw fa-angle-down" style="font-weight: 900;"></md-icon>
             </md-button>
 
             <md-menu-content width="3">
@@ -25,7 +25,7 @@
                     <md-button ng-click="fnStateSettings();">
                         <div layout="row">
                             <p flex>
-                                <md-icon md-font-set="material-icons">settings</md-icon>
+                                <md-icon class="margin-right-5" md-font-set="fa fa-lg fa-fw fa-cog"></md-icon>
                                 Settings
                             </p>
                         </div>
@@ -36,7 +36,7 @@
                     <md-button ng-click="fnLogout();">
                         <div layout="row">
                             <p flex>
-                                <md-icon md-font-set="material-icons">power_settings_new</md-icon>
+                                <md-icon class="margin-right-5" md-font-set="fa fa-lg fa-fw fa-power-off"></md-icon>
                                 Sign out
                             </p>
                         </div>
@@ -55,20 +55,20 @@
                 md-is-locked-open="$mdMedia('gt-sm')">
         <md-button class="md-accent" ng-class="fnIsActive('/dashboard')"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.dashboard">
-            <md-icon md-font-set="material-icons">dashboard</md-icon> Dashboard</md-button>
+            <md-icon md-font-set="fa fa-lg fa-fw fa-dashboard"></md-icon>&nbsp;Dashboard</md-button>
 
         <md-button class="md-accent" ng-class="fnIsActive('/locations')"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.locations">
-            <md-icon md-font-set="material-icons">place</md-icon> Locations</md-button>
+            <md-icon md-font-set="fa fa-lg fa-fw fa-map-marker"></md-icon>&nbsp;Locations</md-button>
 
         <md-button class="md-accent" ng-class="fnIsActive('/worksheet')"
                    ng-if="fnCheckSubscription(userSubscriptions, 'rlo_standard')"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.worksheet">
-            <md-icon md-font-set="material-icons">worksheet</md-icon> Monthly Worksheet</md-button>
+            <md-icon md-font-set="fa fa-lg fa-fw fa-briefcase"></md-icon>&nbsp;Monthly Worksheet</md-button>
 
         <md-button class="md-accent" ng-class="fnIsActive('/location/setup')"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.locationSetup">
-            <md-icon md-font-set="material-icons">pin_drop</md-icon> Location Setup</md-button>
+            <md-icon md-font-set="fa fa-lg fa-fw fa-wrench"></md-icon>&nbsp;Location Setup</md-button>
     </md-sidenav>
     <!-- Left Side Navigation : END-->
 
