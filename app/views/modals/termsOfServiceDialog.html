@@ -1,51 +1,136 @@
 <md-dialog id="terms-of-service-dialog" class="fullScreenDialog" aria-label="termsOfServiceDialog">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Terms of service</h2>
+            <span>Terms of service</span>
+
             <span flex></span>
-            <md-button class="md-icon-button" ng-click="hide()">
+
+            <md-button aria-label="close" class="md-icon-button" ng-click="hide();">
                 <md-icon md-font-set="fa fa-lg fa-fw fa-close"></md-icon>
                 <md-tooltip ng-if="$root.isMobile === null" md-direction="top">Close</md-tooltip>
             </md-button>
         </div>
     </md-toolbar>
+
     <md-dialog-content>
         <div md-theme="grey" class="md-dialog-content">
             <md-content class="sticky-container">
                 <div class="dialog-content">
                     <h3>1. ACCEPTANCE OF TERMS</h3>
-                    <p>By accessing or using the Service in any manner, including but not limited to visiting or browsing the Site, you ("you", "your", "User") are signifying that you have read, understand and agree to be bound by this Terms of Use ("Agreement"), whether or not you are a registered user. This Agreement applies to all users of the Service.</p>
-                    <p>The Service is available only to individuals who are at least 15 years old. By using the Service you represent and warrant that you are (i) at least 15 years old and (ii) if you are a minor between 15 and 18, you have parental permission to enter into this Agreement and use the Service.</p>
-                    <p>We reserve the right, at our sole discretion, to modify or replace any of these Terms at any time, or change, suspend, or discontinue the Service at any time by posting a notice on the site, sending you notice through the Site or email. We may also impose limits to certain features or restrict your access to all or parts of the Service without notice or liability. It is your responsibility to periodically check this Agreement for any changes. Your continued use of the Service following any changes to this Agreement constitutes your acceptance of those changes.</p>
+
+                    <p>By accessing or using the Service in any manner, including but not limited to visiting or
+                        browsing the Site, you ("you", "your", "User") are signifying that you have read, understand and
+                        agree to be bound by this Terms of Use ("Agreement"), whether or not you are a registered user.
+                        This Agreement applies to all users of the Service.</p>
+
+                    <p>The Service is available only to individuals who are at least 15 years old. By using the Service
+                        you represent and warrant that you are (i) at least 15 years old and (ii) if you are a minor
+                        between 15 and 18, you have parental permission to enter into this Agreement and use the
+                        Service.</p>
+
+                    <p>We reserve the right, at our sole discretion, to modify or replace any of these Terms at any
+                        time, or change, suspend, or discontinue the Service at any time by posting a notice on the
+                        site, sending you notice through the Site or email. We may also impose limits to certain
+                        features or restrict your access to all or parts of the Service without notice or liability. It
+                        is your responsibility to periodically check this Agreement for any changes. Your continued use
+                        of the Service following any changes to this Agreement constitutes your acceptance of those
+                        changes.</p>
 
                     <h3>2. ACCESS</h3>
-                    <p>Subject to the terms and conditions of this Agreement, we may offer to provide the Service to you solely, and not for the use or benefit of any third party. Services shall include, but are not limited to, use of the website, use of mobile services or software, or any service RLO performs for you. You shall not reverse assemble, reverse compile, reverse engineer, or otherwise attempt to discover any Service source code or underlying proprietary information.</p>
+
+                    <p>Subject to the terms and conditions of this Agreement, we may offer to provide the Service to you
+                        solely, and not for the use or benefit of any third party. Services shall include, but are not
+                        limited to, use of the website, use of mobile services or software, or any service RLO performs
+                        for you. You shall not reverse assemble, reverse compile, reverse engineer, or otherwise attempt
+                        to discover any Service source code or underlying proprietary information.</p>
 
                     <h3>3. REGISTRATION AND ELIGIBILITY</h3>
-                    <p>As a condition to using the Service, you may be required to register. You shall provide RLO with accurate, complete, and up-to-date information, including your email address. Failure to do so constitutes a breach of this Agreement, and may result in termination of your account possibly resulting in the loss of data. You shall not (i) provide information belonging to another person with the intent to impersonate that person, or (ii) provide information that is subject to any rights of a person other than you without appropriate authorization, or (iii) provide information that is otherwise offensive, vulgar or obscene.</p>
-                    <p>RLO reserves the right to refuse registration or cancel an account in its sole discretion. The user shall be responsible for maintaining the confidentiality of the user's password. The user is responsible for all activity conducted through the user's account and agrees to release RLO from any and all liability related to such activity. The user agrees to notify us in writing if there is a suspected or actual loss, theft, or unauthorized use of the user's account.</p>
+
+                    <p>As a condition to using the Service, you may be required to register. You shall provide RLO with
+                        accurate, complete, and up-to-date information, including your email address. Failure to do so
+                        constitutes a breach of this Agreement, and may result in termination of your account possibly
+                        resulting in the loss of data. You shall not (i) provide information belonging to another person
+                        with the intent to impersonate that person, or (ii) provide information that is subject to any
+                        rights of a person other than you without appropriate authorization, or (iii) provide
+                        information that is otherwise offensive, vulgar or obscene.</p>
+
+                    <p>RLO reserves the right to refuse registration or cancel an account in its sole discretion. The
+                        user shall be responsible for maintaining the confidentiality of the user's password. The user
+                        is responsible for all activity conducted through the user's account and agrees to release RLO
+                        from any and all liability related to such activity. The user agrees to notify us in writing if
+                        there is a suspected or actual loss, theft, or unauthorized use of the user's account.</p>
 
                     <h3>4. RESTRICTIONS</h3>
-                    <p>The User is responsible for all activity in connection with the Service. Any fraudulent, abusive, or otherwise illegal activity or any use of the Service that violates this Agreement may be grounds for termination of the Service. Additionally, the user shall not (i) attempt to gain unauthorized access to any portion or feature of the service, (ii) frame or mirror any part of the Service without prior and explicit written consent, (iii) probe, scan, or test for vulnerabilities of the Service, (iv) take any action that applies a disproportionately large load on the Service, (v) use any device software or routine to interfere or attempt to interfere with the proper working of the Service, (vi) use the Service to post or transmit any content that is infringing, libelous, defamatory, obscene, pornographic, abusive, offensive, profane, or otherwise violates the law or right of any third party, (vii) use the Service to send unsolicited advertising, junk or bulk emails, (viii) use the Service to harass, stalk, or abuse any person, (ix) create a false identity or impersonate another person. The user shall abide by all applicable local, state, national and international laws and regulations.</p>
+
+                    <p>The User is responsible for all activity in connection with the Service. Any fraudulent, abusive,
+                        or otherwise illegal activity or any use of the Service that violates this Agreement may be
+                        grounds for termination of the Service. Additionally, the user shall not (i) attempt to gain
+                        unauthorized access to any portion or feature of the service, (ii) frame or mirror any part of
+                        the Service without prior and explicit written consent, (iii) probe, scan, or test for
+                        vulnerabilities of the Service, (iv) take any action that applies a disproportionately large
+                        load on the Service, (v) use any device software or routine to interfere or attempt to interfere
+                        with the proper working of the Service, (vi) use the Service to post or transmit any content
+                        that is infringing, libelous, defamatory, obscene, pornographic, abusive, offensive, profane, or
+                        otherwise violates the law or right of any third party, (vii) use the Service to send
+                        unsolicited advertising, junk or bulk emails, (viii) use the Service to harass, stalk, or abuse
+                        any person, (ix) create a false identity or impersonate another person. The user shall abide by
+                        all applicable local, state, national and international laws and regulations.</p>
 
                     <h3>5. PRIVACY</h3>
-                    <p>Please review our Privacy Policy. By using the service you are agreeing to be bound by the information and notices contained therein. By using the Service, you are also consenting to have your personal data transferred to and processed in the U.S.</p>
+
+                    <p>Please review our Privacy Policy. By using the service you are agreeing to be bound by the
+                        information and notices contained therein. By using the Service, you are also consenting to have
+                        your personal data transferred to and processed in the U.S.</p>
 
                     <h3>6. SECURITY</h3>
-                    <p>RLO will take reasonable security precautions when using the internet, telephone, or other means to transport data or communications, but expressly disclaims any and all liability for the accessing of any such data communications by unauthorized persons or entities. You acknowledge that you provide your personal information at your own risk.</p>
+
+                    <p>RLO will take reasonable security precautions when using the internet, telephone, or other means
+                        to transport data or communications, but expressly disclaims any and all liability for the
+                        accessing of any such data communications by unauthorized persons or entities. You acknowledge
+                        that you provide your personal information at your own risk.</p>
 
                     <h3>7. WARRANTY DISCLAIMER</h3>
-                    <p>THE SERVICE IS PROVIDED TO YOU ON AN "AS IS" AND "AS AVAILABLE" BASIS AND WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND ANY WARRANTIES IMPLIED BY ANY COURSE OF PERFORMANCE OR USAGE OF TRADE, ALL OF WHICH ARE EXPRESSLY DISCLAIMED. RLO, ITS EMPLOYEES, DIRECTORS, AND PARTNERS DO NOT WARRANT THAT THE SERVICE WILL BE: (1) AVAILABLE OR SECURE, (2) RELIABLE OR CORRECT, (3) THE SERVICE WILL MEET YOUR REQUIREMENTS, (4) THAT ANY DEFECT OR ERRORS WILL BE CORRECTED, (5) OR THAT THE SERVICE IS FREE FROM VIRUSES OR OTHER HARMFUL COMPONENTS.</p>
-                    <p>SOME STATES DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES, SO THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.</p>
+
+                    <p>THE SERVICE IS PROVIDED TO YOU ON AN "AS IS" AND "AS AVAILABLE" BASIS AND WITHOUT WARRANTY OF ANY
+                        KIND, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF TITLE,
+                        NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND ANY WARRANTIES IMPLIED
+                        BY ANY COURSE OF PERFORMANCE OR USAGE OF TRADE, ALL OF WHICH ARE EXPRESSLY DISCLAIMED. RLO, ITS
+                        EMPLOYEES, DIRECTORS, AND PARTNERS DO NOT WARRANT THAT THE SERVICE WILL BE: (1) AVAILABLE OR
+                        SECURE, (2) RELIABLE OR CORRECT, (3) THE SERVICE WILL MEET YOUR REQUIREMENTS, (4) THAT ANY
+                        DEFECT OR ERRORS WILL BE CORRECTED, (5) OR THAT THE SERVICE IS FREE FROM VIRUSES OR OTHER
+                        HARMFUL COMPONENTS.</p>
+
+                    <p>SOME STATES DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES, SO THE ABOVE LIMITATIONS MAY NOT
+                        APPLY TO YOU.</p>
 
                     <h3>8. INDEMNIFICATION</h3>
-                    <p>You agree that you are solely responsible for all of your actions in connection with RLO. You agree to defend, indemnify, and hold harmless RLO, its employees, directors, contractors, affiliates, and representatives from and against any and all liabilities, claims, expenses, including but not limited to reasonable attorney's fees arising from (i) your use or misuse of the Service, or (ii) your access to any part of the Service, or (iii) your violation of any term of this Agreement.</p>
+
+                    <p>You agree that you are solely responsible for all of your actions in connection with RLO. You
+                        agree to defend, indemnify, and hold harmless RLO, its employees, directors, contractors,
+                        affiliates, and representatives from and against any and all liabilities, claims, expenses,
+                        including but not limited to reasonable attorney's fees arising from (i) your use or misuse of
+                        the Service, or (ii) your access to any part of the Service, or (iii) your violation of any term
+                        of this Agreement.</p>
 
                     <h3>9. LIMITATION OF LIABILITY</h3>
-                    <p>TO THE MAXIMUM EXTENT ALLOWED BY LAW, IN NO EVENT SHALL RLO, ITS EMPLOYEES, DIRECTORS, CONTRACTORS, AFFILIATES, OR PARTNERS BE LIABLE UNDER CONTRACT, TORT, STRICT LIABILITY, NEGLIGENCE OR ANY OTHER LEGAL OR EQUITABLE THEORY WITH RESPECT TO THE SERVICE (I) FOR ANY LOST PROFITS, DATA LOSS, COST OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, OR SPECIAL, INDIRECT, INCIDENTAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES OF ANY KIND WHATSOEVER, (II) FOR ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE (REGARDLESS OF SOURCE OF ORIGINATION), OR (III) FOR ANY DAMAGES IN EXCESS (IN THE AGGREGATE) ONE-HUNDRED U.S. DOLLARS. SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATIONS AND EXCLUSIONS MAY NOT APPLY TO YOU.</p>
+
+                    <p>TO THE MAXIMUM EXTENT ALLOWED BY LAW, IN NO EVENT SHALL RLO, ITS EMPLOYEES, DIRECTORS,
+                        CONTRACTORS, AFFILIATES, OR PARTNERS BE LIABLE UNDER CONTRACT, TORT, STRICT LIABILITY,
+                        NEGLIGENCE OR ANY OTHER LEGAL OR EQUITABLE THEORY WITH RESPECT TO THE SERVICE (I) FOR ANY LOST
+                        PROFITS, DATA LOSS, COST OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, OR SPECIAL, INDIRECT,
+                        INCIDENTAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES OF ANY KIND WHATSOEVER, (II) FOR ANY BUGS,
+                        VIRUSES, TROJAN HORSES, OR THE LIKE (REGARDLESS OF SOURCE OF ORIGINATION), OR (III) FOR ANY
+                        DAMAGES IN EXCESS (IN THE AGGREGATE) ONE-HUNDRED U.S. DOLLARS. SOME STATES DO NOT ALLOW THE
+                        EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATIONS AND
+                        EXCLUSIONS MAY NOT APPLY TO YOU.</p>
 
                     <h3>10. TERMINATION</h3>
-                    <p>RLO may terminate your access to all or part of the Service, with or without cause, with or without notice, effective immediately, which may result in the forfeiture and destruction of all information associated with your use of the Service. Sections 7, 8, and 9 shall survive termination. Other provisions of these Terms of Use which by their nature should survive termination shall also survive termination.</p>
+
+                    <p>RLO may terminate your access to all or part of the Service, with or without cause, with or
+                        without notice, effective immediately, which may result in the forfeiture and destruction of all
+                        information associated with your use of the Service. Sections 7, 8, and 9 shall survive
+                        termination. Other provisions of these Terms of Use which by their nature should survive
+                        termination shall also survive termination.</p>
                 </div>
             </md-content>
         </div>
