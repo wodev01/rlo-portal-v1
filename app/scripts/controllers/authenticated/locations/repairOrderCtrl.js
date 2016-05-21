@@ -1,26 +1,12 @@
 'use strict';
 app.controller('repairOrderCtrl',
-    function ($scope, $http, $timeout, $mdSidenav, $log, $cookies, $state, $mdDialog, userService, locationService) {
-
-        var _paginationPageSize = 5;
-
-        $scope.repairOrderFilterOptions = {
-            filterText: '',
-            useExternalFilter: false
-        };
-
-        $scope.repairOrderTotalServerItems = 0;
-        $scope.pagingOptions = {
-            pageSizes: [5, 10, 25, 50],
-            pageSize: 5,
-            currentPage: 1
-        };
+    function ($scope, toastr, locationService) {
 
         $scope.getPagedDataAsync = function () {
             // repair Order call
             if (locationService.getLocationObj().id) {
-                $scope.locationID = locationService.getLocationObj().id;
-                locationService.repairOrder($scope.locationID)
+                var locationID = locationService.getLocationObj().id;
+                locationService.repairOrder(locationID)
                     .then(function (data) {
                         if (data.length !== 0) {
                             $scope.isDataNotNull = true;
@@ -31,15 +17,10 @@ app.controller('repairOrderCtrl',
                             $scope.isMsgShow = true;
                         }
                     }, function (error) {
+                        toastr.error('Failed retrieving repair order data.', 'STATUS CODE: ' + error.status);
                     });
             }
         };
-
-        $scope.$on('refreshrepairOrders', function () {
-            $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
-        });
-
-        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
 
         $scope.repairOrderGridOptions = {
             data: 'repairOrdersData',
@@ -49,21 +30,21 @@ app.controller('repairOrderCtrl',
             enableRowHeaderSelection: false,
             enableVerticalScrollbar: 0,
             columnDefs: [
-                {field: 'customer.first_name', displayName: 'Name', minWidth: 100, enableHiding: false},
-                {field: 'writer.full_name', displayName: 'Writer Name', minWidth: 150, enableHiding: false},
+                {field: 'customer.first_name', displayName: 'Name', minWidth: 150, enableHiding: false},
+                {field: 'writer.full_name', displayName: 'Writer Name', minWidth: 200, enableHiding: false},
                 {field: 'order_status', displayName: 'Status', minWidth: 100, enableHiding: false},
-                {field: 'technician_name', displayName: 'Technician', minWidth: 150, enableHiding: false},
+                {field: 'technician_name', displayName: 'Technician', minWidth: 200, enableHiding: false},
                 {
                     field: 'opened',
                     displayName: 'Arrived',
                     cellFilter: 'date:"dd-MM-yyyy, h:mm:ss a"',
-                    minWidth: 150, enableHiding: false
+                    minWidth: 180, enableHiding: false
                 },
                 {
                     field: 'closed',
                     displayName: 'Closed',
                     cellFilter: 'date:"dd-MM-yyyy, h:mm:ss a"',
-                    minWidth: 150, enableHiding: false
+                    minWidth: 180, enableHiding: false
                 }
             ],
             onRegisterApi: function (gridApi) {
@@ -71,6 +52,10 @@ app.controller('repairOrderCtrl',
                     row.isSelected = true;
                 });
             }
+        };
+
+        $scope.fnInitRepairOrders = function () {
+            $scope.getPagedDataAsync();
         };
 
     });

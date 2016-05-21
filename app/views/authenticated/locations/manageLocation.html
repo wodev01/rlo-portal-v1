@@ -1,8 +1,9 @@
 <md-sidenav class="md-sidenav-right md-whiteframe-z2 right-side-nav" md-component-id="manageLocationView">
     <!-- swapping view header -->
     <md-toolbar class="light-black-bg-1">
-        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-            {{editLocationName}}
+        <div class="md-toolbar-tools" layout="row">
+            <span ng-bind="editLocationName"></span>
+            <span flex></span>
             <md-button ng-click="fnCloseLocationManageSwap();" class="md-raised md-primary">Back</md-button>
         </div>
     </md-toolbar>
@@ -17,15 +18,24 @@
             </md-tab>
 
             <md-tab label="Repair Orders">
-                <md-content ng-controller="repairOrderCtrl" class="md-padding" ng-if="selectedLocationTab === 1">
-                    <div layout="row" layout-sm="column" layout-align="center center" ng-if="!isDataNotNull && !isMsgShow" md-theme="rlo">
-                        <md-progress-circular  class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+                <md-content class="md-padding"
+                            ng-controller="repairOrderCtrl"
+                            ng-if="selectedLocationTab === 1"
+                            ng-init="fnInitRepairOrders();">
+                    <div layout="row" layout-sm="column" layout-align="center center"
+                         ng-if="!isDataNotNull && !isMsgShow" md-theme="rlo">
+                        <md-progress-circular class="md-primary" md-diameter="100"
+                                              md-mode="indeterminate"></md-progress-circular>
                     </div>
-                    <div ng-if="isMsgShow" layout="row" layout-align="center center"><h1>No repair orders available</h1></div>
-                    <div layout-fill flex ng-if="isDataNotNull"
-                         ui-grid-selection ui-grid-auto-resize
+
+                    <div class="md-display-1" ng-if="isMsgShow" layout="row" layout-align="center center">
+                        No repair orders available.
+                    </div>
+
+                    <div ng-if="isDataNotNull"
                          ng-style="$root.fnReturnGridHeight(repairOrdersData.length, '', false, false)"
-                         ui-grid="repairOrderGridOptions"></div>
+                         ui-grid="repairOrderGridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns
+                         layout-fill flex></div>
                 </md-content>
             </md-tab>
 

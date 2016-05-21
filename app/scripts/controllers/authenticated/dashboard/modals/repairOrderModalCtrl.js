@@ -1,6 +1,7 @@
 'use strict';
 app.controller('repairOrderModalCtrl',
         function ($scope, $mdDialog, repairOrder, repairOrders) {
+
             $scope.repairOrder = repairOrder;
             $scope.repairOrders = repairOrders;
             $scope.item = {};

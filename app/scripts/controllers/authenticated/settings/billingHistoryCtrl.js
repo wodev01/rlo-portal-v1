@@ -1,6 +1,6 @@
 'use strict';
 app.controller('BillingHistoryCtrl',
-    function ($scope, $stateParams, $state, $rootScope, billingHistoryService) {
+    function ($scope, $stateParams, $state, billingHistoryService) {
 
         $scope.billingHistoryFilterOptions = {
             useExternalFilter: false
@@ -46,11 +46,11 @@ app.controller('BillingHistoryCtrl',
                 {
                     field: 'date',
                     displayName: 'Date',
-                    minWidth: 150,
+                    minWidth: 160,
                     cellFilter: 'date:\'dd-MM-yyyy\'',
                     enableHiding: false
                 },
-                {field: 'reference', displayName: 'Invoice #', minWidth: 100, enableHiding: false},
+                {field: 'reference', displayName: 'Invoice #', minWidth: 200, enableHiding: false},
                 {field: 'description', displayName: 'Description', minWidth: 250, enableHiding: false},
                 {field: 'amount', displayName: 'Amount', minWidth: 100, enableHiding: false}
             ],

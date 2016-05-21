@@ -92,9 +92,9 @@ app.controller('LocationsCtrl',
             enableRowHeaderSelection: false,
             enableVerticalScrollbar: 0,
             columnDefs: [
-                {field: 'name', displayName: 'Name', minWidth: 100, enableHiding: false},
-                {field: 'address', displayName: 'Address', minWidth: 100, enableHiding: false},
-                {field: 'city', displayName: 'City', minWidth: 100, enableHiding: false},
+                {field: 'name', displayName: 'Name', minWidth: 250, enableHiding: false},
+                {field: 'address', displayName: 'Address', minWidth: 200, enableHiding: false},
+                {field: 'city', displayName: 'City', minWidth: 150, enableHiding: false},
                 {field: 'state', displayName: 'State', minWidth: 100, enableHiding: false},
                 {field: 'zip', displayName: 'Zip', minWidth: 100, enableHiding: false},
                 {
@@ -103,7 +103,8 @@ app.controller('LocationsCtrl',
                     cellTemplate: $scope.locationAction,
                     width: 100,
                     enableSorting: false,
-                    enableColumnMenu: false
+                    enableColumnMenu: false,
+                    enableColumnResize: false
                 }
             ],
             onRegisterApi: function (gridApi) {

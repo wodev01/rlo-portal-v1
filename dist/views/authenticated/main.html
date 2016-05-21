@@ -63,6 +63,7 @@
 
         <md-button class="md-accent" ng-class="fnIsActive('/worksheet')"
                    ng-if="fnCheckSubscription(userSubscriptions, 'rlo_standard')"
+                   ng-init="fnInitWorksheet();"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.worksheet">
             <md-icon md-font-set="fa fa-lg fa-fw fa-briefcase"></md-icon>&nbsp;Monthly Worksheet</md-button>
 

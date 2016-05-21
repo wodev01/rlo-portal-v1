@@ -20,6 +20,7 @@ var app = angular
         'ui.grid.autoResize',
         'ui.grid.pagination',
         'ui.grid.exporter',
+        'ui.grid.resizeColumns',
         'angular.filter',
         'mdDateTime'
     ])
@@ -217,13 +218,6 @@ app.run(function ($rootScope, $mdDialog, $mdSidenav, $cookies, cookieName) {
         return {
             'height': (rowHeader + rowContent + rowFooter) + "px"
         };
-    };
-
-    /*----- on cancel search return last view value -----*/
-    $rootScope.fnCancelSearchFilter = function (event, ctrlField) {
-        if (event.keyCode === 27) {
-            ctrlField.searchForm.searchFilter.$rollbackViewValue();
-        }
     };
 
     /*----- Close all open side-navs -----*/

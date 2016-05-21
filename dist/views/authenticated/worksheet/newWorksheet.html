@@ -1,4 +1,4 @@
-<md-sidenav class="md-sidenav-right md-whiteframe-z2 right-side-nav" md-component-id="right">
+<md-sidenav class="md-sidenav-right md-whiteframe-z2 right-side-nav overflow-auto" md-component-id="right">
     <!-- swapping view header -->
     <md-toolbar class="light-black-bg-1">
         <h1 class="md-toolbar-tools" layout="row" layout-align="space-between center">
@@ -23,13 +23,13 @@
             <md-input-container class="margin-bottom-0">
                 <label>Period Start</label>
                 <input name="period_start" ng-model="newWorksheet.period_start"
-                       ng-click="openDatePicker($event,newWorksheet,'period_start')" readonly style="cursor: pointer">
+                       ng-click="openDatePicker($event,newWorksheet,'period_start');" readonly style="cursor: pointer">
             </md-input-container>
 
             <md-input-container class="margin-bottom-0">
                 <label>Period End</label>
                 <input name="period_end" ng-model="newWorksheet.period_end"
-                       ng-click="openDatePicker($event,newWorksheet,'period_end')" readonly style="cursor: pointer">
+                       ng-click="openDatePicker($event,newWorksheet,'period_end');" readonly style="cursor: pointer">
             </md-input-container>
 
             <div layout="row" layout-align="end center" layout-xs="column">
@@ -37,10 +37,11 @@
                                       md-mode="indeterminate"></md-progress-circular>
 
                 <md-button class="md-raised md-primary" ng-disabled="newWorksheetForm.$invalid"
-                           ng-click="fnCreateWorksheet(newWorksheet)">Create New Worksheet
+                           ng-click="fnCreateWorksheet(newWorksheet);">Create New Worksheet
                 </md-button>
 
-                <md-button class="md-warn md-raised" ng-click="closeSwap()" ng-click="cancel()">Cancel</md-button>
+                <md-button class="md-warn md-raised margin-right-0" ng-click="closeSwap();">Cancel
+                </md-button>
             </div>
         </form>
     </md-content>
