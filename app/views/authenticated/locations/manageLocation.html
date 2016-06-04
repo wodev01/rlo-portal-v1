@@ -11,7 +11,7 @@
     <md-content md-theme="grey">
         <md-tabs class="md-primary" md-selected="selectedLocationTab" md-dynamic-height ng-if="isTabsLoad">
             <md-tab label="Edit">
-                <div ng-controller="LocationInfoCtrl"
+                <div md-theme="rlo" ng-controller="LocationInfoCtrl"
                      ng-if="selectedLocationTab === 0"
                      ng-include="'views/authenticated/locations/locationsInfo.html'">
                 </div>

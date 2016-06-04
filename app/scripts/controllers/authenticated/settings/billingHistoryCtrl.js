@@ -29,12 +29,6 @@ app.controller('BillingHistoryCtrl',
             });
         };
 
-        $scope.fnInitBillingHistory = function () {
-            if ($stateParams.settingsName == 'billingHistory') {
-                $scope.getPagedDataAsync();
-            }
-        };
-
         $scope.billingHistoryGridOptions = {
             data: 'billingHistoryData',
             rowHeight: 50,
@@ -46,7 +40,7 @@ app.controller('BillingHistoryCtrl',
                 {
                     field: 'date',
                     displayName: 'Date',
-                    minWidth: 160,
+                    minWidth: 100,
                     cellFilter: 'date:\'dd-MM-yyyy\'',
                     enableHiding: false
                 },
@@ -61,18 +55,10 @@ app.controller('BillingHistoryCtrl',
             }
         };
 
-        $scope.fnBillingHistoryDelete = function (row, event, $mdDialog) {
-            var confirm = $mdDialog.confirm()
-                .title('Delete')
-                .content('Would you like to delete this billingHistory?')
-                .ariaLabel('Delete')
-                .ok('Delete')
-                .cancel('Cancel')
-                .targetEvent(event);
-            $mdDialog.show(confirm).then(function () {
-            });
+        $scope.fnInitBillingHistory = function () {
+            if ($stateParams.settingsName == 'billingHistory') {
+                $scope.getPagedDataAsync();
+            }
         };
 
-        $scope.fnBillingHistoryEdit = function () {
-        };
     });

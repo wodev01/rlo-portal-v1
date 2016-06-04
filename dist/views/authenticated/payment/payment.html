@@ -5,8 +5,9 @@
         </div>
 
         <md-menu md-position-mode="target-right target">
-            <md-button ng-click="$mdOpenMenu($event)">
-                <span ng-bind="userObj.name"></span><md-icon md-font-set="fa fa-lg fa-fw fa-angle-down" style="font-weight: 900;"></md-icon>
+            <md-button aria-label="menu" ng-click="$mdOpenMenu($event)">
+                <span ng-bind="userObj.name"></span>
+                <md-icon md-font-set="fa fa-lg fa-fw fa-angle-down" style="font-weight: 900;"></md-icon>
             </md-button>
 
             <md-menu-content width="4">
@@ -24,6 +25,7 @@
         </md-menu>
     </div>
 </md-toolbar>
+
 <!-- Body content -->
 <md-content class="container-bg">
     <div style="min-height: 20px;">
@@ -36,45 +38,69 @@
             <form name="paymentForm" layout="column" novalidate>
                 <md-input-container class="remove-error-space">
                     <md-icon class="md-primary margin-top-10" md-font-set="fa fa-lg fa-fw fa-credit-card"></md-icon>
-                    <input type="number" name="cardNumber" placeholder="Card Number" ng-model="payment.number" ng-pattern="/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/" required/>
+                    <input type="number" name="cardNumber" placeholder="Card Number" ng-model="payment.number"
+                           ng-pattern="/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/"
+                           required/>
+
                     <div ng-if="paymentForm.$submitted || paymentForm.cardNumber.$touched">
-                        <span class="error-msg" ng-if="paymentForm.cardNumber.$error.required">Card number is required.</span>
-                        <span class="error-msg" ng-if="paymentForm.cardNumber.$error.pattern">This field must contain valid card number</span>
+                        <span class="error-msg"
+                              ng-if="paymentForm.cardNumber.$error.required">Card number is required.</span>
+                        <span class="error-msg" ng-if="paymentForm.cardNumber.$error.pattern">
+                            This field must contain valid card number.
+                        </span>
                     </div>
                 </md-input-container>
-                <md-input-container class="remove-error-space">
+
+                <md-input-container>
                     <md-icon class="md-primary margin-top-10" md-font-set="fa fa-lg fa-fw fa-check"></md-icon>
-                    <input type="number" name="cvv" placeholder="CVV" ng-model="payment.cvv" ng-pattern="/^[0-9]{3,4}$/" required/>
+                    <input type="number" name="cvv"
+                           ng-model="payment.cvv"
+                           ng-pattern="/^[0-9]{3,4}$/"
+                           placeholder="CVV" required/>
+
                     <div ng-if="paymentForm.$submitted || paymentForm.cvv.$touched">
                         <span class="error-msg" ng-if="paymentForm.cvv.$error.required">CVV is required.</span>
-                        <span class="error-msg" ng-if="paymentForm.cvv.$error.pattern">This field must contain valid CVV number</span>
+                        <span class="error-msg" ng-if="paymentForm.cvv.$error.pattern">
+                            This field must contain valid CVV number.
+                        </span>
                     </div>
                 </md-input-container>
-                <label style="color: rgba(0, 0, 0, 0.40); margin-left:2px;">Expiration (MM/YYYY)</label>
-                <div layout layout-sm="column">
-                    <md-input-container class="remove-error-space">
+
+                <label class="margin-left-35" style="color: rgba(0, 0, 0, 0.40);"> Expiration (MM/YYYY) </label>
+
+                <div layout="row" layout-xs="column">
+                    <md-input-container class="remove-error-space" flex>
                         <md-icon class="md-primary margin-top-10" md-font-set="fa fa-lg fa-fw fa-calendar"></md-icon>
-                        <input type="number" name="exp_month" placeholder="Month" ng-model="payment.exp_month" min="1" max="12" required />
+                        <input type="number" name="exp_month" placeholder="Month" ng-model="payment.exp_month" min="1"
+                               max="12" required/>
+
                         <div ng-if="paymentForm.$submitted || paymentForm.exp_month.$touched">
                             <span class="error-msg" ng-if="paymentForm.exp_month.$error.required">Expiration month is required.</span>
-                            <span class="error-msg" ng-if="paymentForm.exp_month.$error.min && paymentForm.exp_month.$error.max">Month is invalid.</span>
+                            <span class="error-msg"
+                                  ng-if="paymentForm.exp_month.$error.min && paymentForm.exp_month.$error.max">Month is invalid.</span>
                             <span class="error-msg" ng-if="paymentForm.exp_month.$error.pattern">This field must contain numbers only.</span>
                         </div>
                     </md-input-container>
-                    <md-input-container  class="remove-error-space">
+
+                    <md-input-container class="remove-error-space" flex>
                         <md-icon class="md-primary margin-top-10" md-font-set="fa fa-lg fa-fw fa-calendar"></md-icon>
-                        <input type="number" name="exp_year" placeholder="Year" ng-model="payment.exp_year" min="1000" max="9999" required />
+                        <input type="number" name="exp_year" placeholder="Year" ng-model="payment.exp_year" min="1000"
+                               max="9999" required/>
+
                         <div ng-if="paymentForm.$submitted || paymentForm.exp_year.$touched">
                             <span class="error-msg" ng-if="paymentForm.exp_year.$error.required">Expiration year is required.</span>
-                            <span class="error-msg" ng-if="paymentForm.exp_year.$error.min || paymentForm.exp_year.$error.max">Year is invalid.</span>
+                            <span class="error-msg"
+                                  ng-if="paymentForm.exp_year.$error.min || paymentForm.exp_year.$error.max">Year is invalid.</span>
                             <span class="error-msg" ng-if="paymentForm.exp_year.$error.number">This field must contain numbers only.</span>
                         </div>
                     </md-input-container>
                 </div>
+
                 <div layout="column" layout-align="center center">
                     <div layout="row">
                         <md-button type="submit" class="md-raised md-primary"
-                                   ng-disabled="payment.isProcessing" ng-click="paymentForm.$valid && fnUpdateUserPaymentInfo(payment);">
+                                   ng-disabled="payment.isProcessing"
+                                   ng-click="paymentForm.$valid && fnUpdateUserPaymentInfo(payment);">
                             Save
                         </md-button>
                     </div>

@@ -4,22 +4,19 @@ app.controller('PaymentCtrl',
 
         $scope.payment = {isProcessing: false};
 
-        ChargeIO.init({
-            public_key: 'm_zuT9A5oAQTilLxkc_PWanQ'
-        });
-
         $scope.fnLogout = function () {
             CarglyPartner.logout(function () {
                 $cookies.remove(cookieName);
                 $state.go('login');
-            }, function () {});
+            }, function () {
+            });
         };
 
         $scope.fnUpdateUserPaymentInfo = function (payment) {
             payment.isProcessing = true;
             var paymentObj = angular.copy(payment);
             delete paymentObj.isProcessing;
-            ChargeIO.create_token(paymentObj, chargeIOResponseHandler,function(response) {
+            ChargeIO.create_token(paymentObj, chargeIOResponseHandler, function (response) {
                 // Show the errors on the form
                 payment.isProcessing = false;
                 console.log(response.error.message);
@@ -27,7 +24,7 @@ app.controller('PaymentCtrl',
         };
 
         function chargeIOResponseHandler(response) {
-            paymentService.savePaymentInfo(response).then(function(){
+            paymentService.savePaymentInfo(response).then(function () {
                 $state.go('main.dashboard');
             });
         }
@@ -36,6 +33,11 @@ app.controller('PaymentCtrl',
         $scope.fnInitPaymentInfo = function () {
             if (CarglyPartner.user) {
                 $scope.userObj = CarglyPartner.user;
+
+                ChargeIO.init({
+                    public_key: CarglyPartner.user.paymentProcessingPublicKey //'m_zuT9A5oAQTilLxkc_PWanQ'
+                });
             }
         };
+
     });
