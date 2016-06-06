@@ -1242,3 +1242,8 @@ md-list md-list-item > div {
 .md-toolbar-tools > .md-button:first-child {
     margin-left: 0;
 }
+
+.leftLabel {
+    font-weight: bold;
+    padding-right: 3px;
+}
