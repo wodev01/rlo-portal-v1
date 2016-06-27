@@ -11,7 +11,7 @@
         <div layout="row">
             <md-button aria-label="Watch Video" class="md-icon-button" ng-href="http://rlotraining.com/demo/" target="_blank">
                 <md-icon md-font-set="fa fa-lg fa-fw fa-play-circle"></md-icon>
-                <md-tooltip ng-if="$root.isMobile === null" md-direction="left">Watch Video</md-tooltip>
+                <md-tooltip ng-if="$root.isMobile === null" md-direction="left">Watch Our Video Tips</md-tooltip>
             </md-button>
         </div>
 
@@ -70,6 +70,12 @@
         <md-button class="md-accent" ng-class="fnIsActive('/location/setup')"
                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.locationSetup">
             <md-icon md-font-set="fa fa-lg fa-fw fa-wrench"></md-icon>&nbsp;Location Setup</md-button>
+
+        <md-button class="md-accent" ng-class="fnIsActive('/help/videos')"
+                    ng-click="$root.fnCloseSideNavs();" ui-sref="main.help">
+            <md-icon md-font-set="fa fa-lg fa-fw fa-info-circle" ng-style="{'color':lastConfig.color}">
+                <md-tooltip ng-if="lastConfig.msg" md-direction="bottom">{{lastConfig.msg}}</md-tooltip>
+            </md-icon>&nbsp;Help videos</md-button>
     </md-sidenav>
     <!-- Left Side Navigation : END-->
 

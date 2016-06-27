@@ -187,6 +187,16 @@ app.config(function ($mdThemingProvider, $stateProvider, $urlRouterProvider, toa
                 }]
             }
         })
+        .state('main.help', {
+            url: 'help/videos',
+            templateUrl: "views/authenticated/helpVideos/helpVideos.html",
+            data:{pageTitle:'Help Videos'},
+            resolve: {
+                AuthService: ['AuthService', function (AuthService) {
+                    return AuthService.fnGetUser();
+                }]
+            }
+        })
         .state('main.settings', {
             url: 'settings/:settingsName',
             controller: 'SettingsCtrl',

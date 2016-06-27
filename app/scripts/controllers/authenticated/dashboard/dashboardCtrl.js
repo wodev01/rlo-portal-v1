@@ -74,7 +74,9 @@ app.controller('DashboardCtrl',
 		$scope.fnFetchAgentAppDownloadUrl = function () {
 			accountServices.fetchAccount(CarglyPartner.user.id).then(function (res) {
 				$scope.appDownloadUrl = res.appDownloadUrl;
-				$scope.fnGetLocationDetails();
+				$scope.locationDDOptions = [];
+				$scope.fnCreateLocationDD($scope.$parent.partnerLocations);
+				$scope.fnLocationStatus($scope.$parent.partnerLocations);
 			});
 		};
 
@@ -93,7 +95,7 @@ app.controller('DashboardCtrl',
 		/*----------- Create Location Drop Down-------------*/
 		$scope.fnCreateLocationDD = function (response) {
 			angular.forEach(response, function (obj) {
-				$scope.locationDDOptions.push({id: obj.id, name: obj.name, value: obj.id});
+				$scope.locationDDOptions.push({id: obj.id, name: obj.name, value: obj.id, lastConfig: obj.lastConfig});
 			});
 
 			$scope.locationDDOptions.unshift({id: '', name: 'All locations'});
@@ -104,6 +106,9 @@ app.controller('DashboardCtrl',
 		/*---------- Location change event ----------*/
 		$scope.fnLocationChange = function (selectedLocationOption) {
 			$scope.selectedLocationOption = selectedLocationOption;
+
+			$scope.$parent.fnGetLocationStatusForVideoIndicator(selectedLocationOption);
+
 			$scope.currentDate = moment().toDate();
 
 			console.log('Summary-Section: Call for /reports/daily_summary API');

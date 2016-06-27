@@ -6,18 +6,25 @@
     </div>
 </div>
 <div id="dashboard-tab" class="md-padding overflow-auto" ng-init="fnInitDashboard();"
-     ng-if="fnCheckSubscription(userSubscriptions, 'rlo_daily_email')">
+     ng-if="fnCheckSubscription(userSubscriptions, 'rlo_daily_email') && $parent.partnerLocations.length">
     <!-- Location Drop-down -->
-    <div layout="row">
-        <md-input-container>
-            <label>Locations</label>
-            <md-select ng-model="selectedLocationOption"
-                       ng-change="fnLocationChange(selectedLocationOption);">
-                <md-option ng-repeat="location in locationDDOptions" ng-value="location.id">
-                    {{location.name}}
-                </md-option>
-            </md-select>
-        </md-input-container>
+     <div layout="row" layout-xs="column">
+        <div flex="20">
+            <md-input-container>
+                <label>Locations</label>
+                <md-select ng-model="selectedLocationOption"
+                           ng-change="fnLocationChange(selectedLocationOption);">
+                    <md-option ng-repeat="location in locationDDOptions" ng-value="location.id">
+                        {{location.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div flex-offset="20" layout-align="center center">
+            <div>Powered by Repair Shop Marketing Tools</div>
+            <div flex-offset="25">Copyright 2014</div>
+            <div><a target="_blank" href="http://www.repairshopmarketingtools.com">www.repairshopmarketingtools.com</a></div>
+        </div>
     </div>
 
     <!-- 1st Row : Summary Section -->
