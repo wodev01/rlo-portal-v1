@@ -1,12 +1,11 @@
 'use strict';
 app.controller('DashboardCtrl',
 	function ($scope, $rootScope, $mdDialog, $filter, $timeout, $location,
-			  toastr, locationService, dashboardService, accountServices) {
+			  toastr, locationService, dashboardService, accountServices, localStorage) {
 
 		$scope.partnerId = '';
 		$scope.locationDDOptions = [];
 		$scope.selectedLocationOption = '';
-		$scope.isSetupModalShow = true;
 
 		/*-- Summary section --*/
 		$scope.isDailySummaryData = false;
@@ -108,6 +107,7 @@ app.controller('DashboardCtrl',
 			$scope.selectedLocationOption = selectedLocationOption;
 
 			$scope.$parent.fnGetLocationStatusForVideoIndicator(selectedLocationOption);
+			$scope.fnInformLocationLastSync(selectedLocationOption);
 
 			$scope.currentDate = moment().toDate();
 
@@ -137,34 +137,34 @@ app.controller('DashboardCtrl',
 				}, function () {
 				});
 			}
-			else {
-				if (data.length !== 0) {
-					$scope.isLocationStatusData = true;
-					$scope.locations = data;
-					angular.forEach($scope.locations, function (locObj) {
-						$scope.fnLastSyncIsNull(locObj);
-					});
-				} else {
-					$scope.isLocationStatusData = false;
-				}
+		};
+
+		$scope.fnInformLocationLastSync = function(locId){
+			var locObj = {}, idx = $scope.$parent.partnerLocations.map(function(obj){return obj.id}).indexOf(locId);
+			if(idx > -1){
+				locObj = $scope.$parent.partnerLocations[idx];
+				$scope.fnLastSyncIsNull(locObj);
 			}
 		};
 
 		$scope.fnLastSyncIsNull = function (location, event) {
+			var lastSynLodIds = JSON.parse(localStorage.getItem('lastSynLodIds'));
 			location.lastConfig = typeof location.lastConfig === 'string' ? JSON.parse(location.lastConfig) : location.lastConfig;
 			if (location.lastConfig !== null) {
 				if (location.lastConfig.settings) {
 					if (location.lastConfig.settings['carglyconnect.lastsync'] === null) {
-						if ($scope.isSetupModalShow) {
+						if (lastSynLodIds.indexOf(location.id) === -1) {
 							$scope.fnCustomDialog(event);
-							$scope.isSetupModalShow = false;
+							lastSynLodIds.push(location.id);
+							localStorage.setItem('lastSynLodIds', JSON.stringify(lastSynLodIds));
 						}
 					}
 				}
 			} else {
-				if ($scope.isSetupModalShow) {
+				if (lastSynLodIds.indexOf(location.id) === -1) {
 					$scope.fnCustomDialog(event);
-					$scope.isSetupModalShow = false;
+					lastSynLodIds.push(location.id);
+					localStorage.setItem('lastSynLodIds', JSON.stringify(lastSynLodIds));
 				}
 			}
 		};
@@ -1505,11 +1505,30 @@ app.controller('DashboardCtrl',
 			}
 		};
 
+		/*-------- Check dashboard subscription and subscription status -----*/
+		$scope.fnCheckDashboardSubscription = function (partnerId) {
+			dashboardService.fetchClientSubscriptionInfo(partnerId)
+				.then(function (res) {
+					$scope.isDahsboardShow = false;
+					if(res.subscription_status != 'Disabled'){
+						angular.forEach(res.locations,function(locations){
+							var subIndex = locations.subscriptions.indexOf('rlo_daily_email');
+							if(subIndex > -1){
+								$scope.isDahsboardShow = true;
+							}
+						});
+					}
+				});
+		};
+
 		/*---------- Init ----------*/
 		$scope.fnInitDashboard = function () {
 			$scope.partnerId = CarglyPartner.user.partnerId;
 			$scope.fnCreatechartGroupsDD();
 			$scope.fnFetchAgentAppDownloadUrl();
+			if(!localStorage.getItem('lastSynLodIds')){
+				localStorage.setItem('lastSynLodIds', JSON.stringify([]));
+			}
 
 			/*---------- Bind scroll and window resize event for viewport changes ----------*/
 			$('#content #dashboard-tab').on('scroll', function () {

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MainCtrl', function ($scope, $mdDialog, $location, $cookies, cookieName, $state, $mdSidenav,locationService) {
+app.controller('MainCtrl', function ($scope, $mdDialog, $location, $cookies, cookieName, $state, $mdSidenav,locationService, localStorage) {
 
     $scope.partnerLocations = [];
     $scope.lastConfig = {};
@@ -81,6 +81,7 @@ app.controller('MainCtrl', function ($scope, $mdDialog, $location, $cookies, coo
     $scope.fnLogout = function () {
         CarglyPartner.logout(function () {
             $cookies.remove(cookieName);
+            localStorage.removeItem('lastSynLodIds');
             $state.go('login');
         }, function () {
         });

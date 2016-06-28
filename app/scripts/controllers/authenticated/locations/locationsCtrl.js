@@ -64,6 +64,7 @@ app.controller('LocationsCtrl',
                     $scope.isLocationDataNotNull = true;
                     $scope.isLocationMsgShow = false;
                     $scope.locationData = data;
+                    $scope.$parent.partnerLocations = data;
                 } else {
                     $scope.isLocationDataNotNull = false;
                     $scope.isLocationMsgShow = true;

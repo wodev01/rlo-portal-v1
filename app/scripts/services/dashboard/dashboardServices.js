@@ -227,6 +227,22 @@ app.factory('dashboardService',['$q', 'ErrorMsg', 'encodeParamService',
             return defer.promise;
         };
 
+        dashboardService.fetchClientSubscriptionInfo = function(partnerId){
+            var defer = $q.defer();
+            CarglyPartner.ajax({
+                url: '/partners/api/' + partnerId + '/subscription-info',
+                type: 'GET',
+                success: function(data) {
+                    defer.resolve(data);
+                },
+                error:function(error) {
+                    ErrorMsg.CheckStatusCode(error.status);
+                    defer.resolve(error);
+                }
+            });
+            return defer.promise;
+        };
+
         return dashboardService;
 
     }

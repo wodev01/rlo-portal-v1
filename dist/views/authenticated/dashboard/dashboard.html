@@ -1,12 +1,17 @@
-<div layout="row" layout-fill layout-align="center center"
-        ng-if="!fnCheckSubscription(userSubscriptions, 'rlo_daily_email')">
+<div ng-init="fnCheckDashboardSubscription($parent.userObj.partnerId)">
+    <div layout="row" layout-fill layout-align="center center"
+         ng-if="isDahsboardShow === undefined">
+        <md-progress-circular class="md-primary" md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div layout="row" layout-fill layout-align="center center"
+        ng-if="isDahsboardShow !== undefined && isDahsboardShow === false">
     <div class="md-headline text-center" style="color: #3B529B;line-height: 2em;" flex="50">
         <p>Get the RLO Live Composite Dashboard today!</p>
         <p>Go <a href="http://rlotraining.com/kpi" target="_blank">here</a> to Sign Up!</p>
     </div>
-</div>
-<div id="dashboard-tab" class="md-padding overflow-auto" ng-init="fnInitDashboard();"
-     ng-if="fnCheckSubscription(userSubscriptions, 'rlo_daily_email') && $parent.partnerLocations.length">
+    </div>
+    <div id="dashboard-tab" class="md-padding overflow-auto" ng-init="fnInitDashboard();"
+     ng-if="isDahsboardShow !== undefined && isDahsboardShow === true && $parent.partnerLocations.length">
     <!-- Location Drop-down -->
      <div layout="row" layout-xs="column">
         <div flex="20">
@@ -636,4 +641,5 @@
         </md-content>
     </section>
 
+    </div>
 </div>

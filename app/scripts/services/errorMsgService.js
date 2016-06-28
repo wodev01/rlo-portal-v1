@@ -1,11 +1,12 @@
 'use strict';
-app.factory('ErrorMsg',['$state', 'toastr', '$cookies', 'cookieName',
-    function($state, toastr, $cookies, cookieName) {
+app.factory('ErrorMsg',['$state', 'toastr', '$cookies', 'cookieName', 'localStorage',
+    function($state, toastr, $cookies, cookieName, localStorage) {
         var ErrorMsg = {};
 
         function fnLogout(){
             CarglyPartner.logout(function () {
                 $cookies.remove(cookieName);
+                localStorage.removeItem('lastSynLodIds');
                 $state.go('login');
             }, function () {});
         }
